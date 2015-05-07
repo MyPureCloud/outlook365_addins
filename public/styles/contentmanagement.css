@@ -1,0 +1,48 @@
+body{
+    12px;
+}
+.saveattachmentbtn{
+    cursor:pointer
+}
+
+.file{
+    height: 27px;
+    padding: 2px;
+    width:90%;
+}
+
+.file:hover{
+    background-color: #C0DDE6
+}
+
+#workspaceFiles{
+    margin-top: 10px;
+    height: 165;
+    overflow-y: scroll;
+    width:100%;
+    font-size:11px;
+}
+
+#workspaceFilesHeader{
+    margin-top: 10px;
+    width:100%;
+    font-weight:bold;
+}
+
+
+
+#workspaceFilename{
+    width:400px;
+}
+
+.alert{
+    height:100%;
+}
+
+#saveDialog>label{
+    margin-right:10px;
+}
+
+table{
+    width:95%;
+}

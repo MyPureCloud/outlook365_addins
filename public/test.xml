@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created:cb85b80c-f585-40ff-8bfc-12ff4d0e34a9-->
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="MailApp">
+    <Id>ff49b110-cff8-11e4-be8a-600308a98970</Id>
+    <Version>999.99.99</Version>
+    <ProviderName>localhost</ProviderName>
+    <DefaultLocale>en-US</DefaultLocale>
+    <DisplayName DefaultValue="Local Test" />
+    <Description DefaultValue="LOCAL TEST APP"/>
+    <!-- Change the following line to specify the web server where the image file is hosted. -->
+    <IconUrl DefaultValue=
+        "https://purecloudoffice365.herokuapp.com/images/purecloud.jpg"/>
+    <Capabilities>
+        <Capability Name="Mailbox" />
+    </Capabilities>
+    <DesktopSettings>
+        <SourceLocation DefaultValue="https://localhost:8080/test.html"/>
+        <RequestedHeight>250</RequestedHeight>
+    </DesktopSettings>
+
+    <Permissions>ReadItem</Permissions>
+    <Rule xsi:type="RuleCollection" Mode="Or">
+        <Rule xsi:type="ItemIs" ItemType="Message"  />
+    </Rule>
+</OfficeApp>

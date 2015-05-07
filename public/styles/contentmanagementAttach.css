@@ -1,0 +1,64 @@
+body{
+    margin:10px;
+}
+
+html,body {
+    height:97%;
+}
+
+.attachBtn{
+    float: right;
+    position: relative;
+    right: 4px;
+    top: -25px;
+}
+
+
+.file{
+    height: 50px;
+    padding: 2px;
+    width:100%;
+}
+
+.fileDark{
+    background: #e0e0e0;
+
+}
+
+.file:hover{
+    background-color: #C0DDE6
+}
+
+.fileName{
+    font-weight:bold;
+}
+
+/*
+.file::before {
+    content: "";
+}
+
+.file::after {
+    content: "";
+}
+*/
+.fileSize{
+    float:left;
+    margin-right:10px
+}
+
+#workspaceFiles{
+    margin-top: 10px;
+    height: 66%;
+    overflow-y: scroll;
+    font-size:11px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding:5px;
+}
+
+#workspaceFilesHeader{
+    margin-top: 10px;
+    width:100%;
+    font-weight:bold;
+}

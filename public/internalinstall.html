@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>Internal Install Instructions</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="scripts/directoryApp.js" type="text/javascript"></script>
+</head>
+<body>
+    <b>For help or questions, see the PureCloud chat room "Open Source"</b>
+
+    <br/>
+    <h1>Compatability Matrix</h1>
+    <table class="table table-condensed">
+        <tr>
+            <th></th>
+            <th>Directory View</th>
+            <th>Content Management</th>
+        </tr>
+        <tr>
+            <td>Web Client (OSX and Windows)</td>
+            <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+            <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+        </tr>
+        <tr>
+            <td>Windows Desktop Client</td>
+            <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+            <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+        </tr>
+        <tr>
+            <td>OSX Desktop Client (2015)</td>
+            <td>Maybe (Might load but have blank content)</td>
+            <td></td>
+        </tr>
+
+    </table>
+    <br/>
+    <br/>
+
+    <h1>Install Instructions</h1>
+    <ol>
+        <li>Log into OWA</li>
+        <li>Change the url from /owa to /ecp <br/> <img src="/images/setup/ecpurl.png"/></li>
+        <li>Select apps from the options list<br/> <img src="/images/setup/apps.png" style="height:300px;"/></li>
+        <li>Find the drop down and select Add from Url<br/><img src="/images/setup/addfromurl.png" style="height:140px;"/><br/>
+            <br/>
+            <div class="alert alert-warning" role="alert">
+                If you can't see that setting, you need to request from IT to enable it. You can refer them to case INC0099689 where I had to ask for access.
+            </div>
+        </li>
+        <li>Enter this url http://purecloudoffice365.herokuapp.com/directory.xml</li>
+        <li>Enjoy</li>
+    </ol>
+    <br/>
+</body>
+</html>

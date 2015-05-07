@@ -1,0 +1,4 @@
+sh 'go fmt'
+sh 'go build'
+
+sh './outlook365addins'
