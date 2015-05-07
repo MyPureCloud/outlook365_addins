@@ -122,7 +122,7 @@ function loadAttachments(){
 
     mailId = Office.context.mailbox.item.itemId;
 
-    console.log(Office.context.mailbox.item.attachments);
+    traceService.log(Office.context.mailbox.item.attachments);
 
     $.each(Office.context.mailbox.item.attachments, function(index, value) {
         if(!this.isInline){
@@ -131,11 +131,11 @@ function loadAttachments(){
         }
     });
 
-    console.log(attachments);
+    traceService.log(attachments);
 
     $('.saveattachmentbtn').click(function(e){
         var data = jQuery(e.currentTarget).data();
-        console.log(data);
+        traceService.log(data);
 
         var attachment = Office.context.mailbox.item.attachments[data.index];
         showSaveDialog(attachment.id, attachment.name, attachment.size, attachment.contentType);

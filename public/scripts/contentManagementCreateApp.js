@@ -80,7 +80,7 @@ function attachFile(id, name){
     '  </soap:Body>'+
 '</soap:Envelope>';
     Office.context.mailbox.makeEwsRequestAsync(request, function (result) {
-            console.log(result)
+        traceService.log(result)
     });
 
     return;
