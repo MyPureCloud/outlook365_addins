@@ -2,8 +2,11 @@
 Environment variables
 ---------------------
 **PORT** - The port to run the web server on
+
 **COOKIESTORE** - A secure Id for the cookie
+
 **OAUTHSECRET** - the OAuth Client Secret
+
 **OAUTHIDID** - The OAuth Client Id
 
 Testing Locally
@@ -12,8 +15,8 @@ To test locally, make sure that the above environment variables are set and run 
 
 In the handlePage method in server.go, there is a line that looks like
 ```
-    	if fileName == "/test.html" {
-			fileName = "/voicemail.html"
-		}
+if fileName == "/test.html" {
+	fileName = "/voicemail.html"
+}
 ```
 change the fileName to the page you actually want to test and return back to the user.

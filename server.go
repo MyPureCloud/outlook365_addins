@@ -16,7 +16,7 @@ import (
 )
 
 var (
-	apiUrl, _      = url.Parse("https://public--api-us--east--1-inindca-com-7a1o6tnlzr5h.runscope.net") //https://public-api.us-east-1.inindca.com")
+	apiUrl, _      = url.Parse("https://public-api.us-east-1.inindca.com")
 	platformUrl, _ = url.Parse("https://apps.inindca.com/platform")
 )
 
@@ -139,7 +139,7 @@ func handlePage(w http.ResponseWriter, r *http.Request) {
 		}
 
 		if fileName == "/test.html" {
-			fileName = "/voicemail.html"
+			fileName = "/directory.html"
 		}
 
 		tmpl, _ := template.ParseFiles("public" + fileName)
