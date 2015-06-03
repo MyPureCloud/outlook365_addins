@@ -48,24 +48,6 @@ func main() {
 	r.HandleFunc("/getrecordingurl", handleGetRecordingUrl)
 	r.HandleFunc("/logout", handleLogout)
 
-	//	http.Handle("/", r)
-	/*
-		publicproxy := httputil.NewSingleHostReverseProxy(apiUrl)
-		http.HandleFunc("/public/", proxyhandler(publicproxy))
-
-		platformproxy := httputil.NewSingleHostReverseProxy(platformUrl)
-		http.HandleFunc("/platform/", proxyhandler(platformproxy))
-
-
-		http.HandleFunc("/saveattachment", handleSaveAttachment)
-		http.HandleFunc("/preparetoattachfile", handlePrepareToAttachFile)
-		http.HandleFunc("/downloadfile/", handleDownloadFile)
-		http.HandleFunc("/getrecordingurl", handleGetRecordingUrl)
-
-		http.HandleFunc("/", handlePage)
-
-	*/
-
 	var port = os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
@@ -85,7 +67,8 @@ func main() {
 func handleApi(w http.ResponseWriter, r *http.Request) {
 	authValue := getAuthToken(r)
 
-	log.Printf("%+v", r)
+	//log.Printf("%+v", r)
+	//log.Printf("request to: %v", r.URL.String())
 
 	req, err := http.NewRequest(r.Method, apiUrl.String()+r.URL.String(), r.Body)
 
@@ -103,7 +86,7 @@ func handleApi(w http.ResponseWriter, r *http.Request) {
 	}
 	defer response.Body.Close()
 
-	log.Printf("%+v", response)
+	//	log.Printf("%+v", response)
 
 	/*data, _ := httputil.DumpResponse(response, true)
 	log.Println(string(data))

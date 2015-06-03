@@ -115,10 +115,20 @@
         <div id="settings" class="alert alert-info" role="alert">
             <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h2>Settings</h2>
-            <input type="checkbox" id='settingCreateTel'/> Create phone numbers as tel: links
-            <br/>
-            <input type="checkbox" id='settingCreateMailto'/> Create email addresses as mailto: links
+            <form>
+                <label>Phone Numbers</label>
+                <br/>
 
+                <input type="radio" id='settingCallInPureCloud'  name="phone">Place call through PureCloud</input>
+                <br>
+                <input type="radio" id='settingCreateTel' name="phone" >Create phone numbers as tel: links</input>
+
+                <br/>
+                <br/>
+                <label>Email Addresses</label><br/>
+
+                <input type="checkbox" id='settingCreateMailto'/> Create email addresses as mailto: links
+            </form>
         </div>
     </div>
 </body>

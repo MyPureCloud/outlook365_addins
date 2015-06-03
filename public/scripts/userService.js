@@ -1,5 +1,5 @@
 var userService = (function(){
-    function createUser(email, name, pictureUrl, largepictureUrl, phone, department, title, status) {
+    function createUser(email, name, pictureUrl, largepictureUrl, phone, department, title, status, id) {
         return {
             name: name,
             email: email,
@@ -8,7 +8,8 @@ var userService = (function(){
             phone: phone,
             department: department,
             title: title,
-            status: status
+            status: status,
+            id: id
 
         }
     }
@@ -63,13 +64,20 @@ var userService = (function(){
                         var user = data.entities[0];
 
                         var name = user.name;
-                        var image = user.userImages[0].imageUri;
-                        var largeImage = user.userImages[1].imageUri;
+                        var image = "/images/unknownuser48.png";
+                        var largeImage = "/images/unknownuser96.png";
+
+                        if(user.userImages != null && user.userImages.length >= 2){
+                            image = user.userImages[0].imageUri;
+                            largeImage = user.userImages[1].imageUri;
+                        }
+
                         var phone = user.phoneNumber
                         var department = user.department;
-                        var status=""; //TODO: GET STATUS
+                        var status= user.status.name;
                         var title = user.title;
-                        callback(createUser(email.emailAddress, name, image, largeImage, phone, department, title, status))
+                        var id = user.id;
+                        callback(createUser( email.emailAddress, name, image, largeImage, phone, department, title, status, id))
                     }else{
                         callback(createUser(email.emailAddress, email.displayName))
                     }

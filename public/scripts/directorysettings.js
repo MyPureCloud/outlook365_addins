@@ -5,6 +5,11 @@ var directorySettings = (function(){
         localStorage.createTel =  this.checked;
     });
 
+    $('#settingCallInPureCloud').change(function() {
+        localStorage.createTel =  !this.checked;
+    });
+
+
     $('#settingCreateMailto').change(function() {
         localStorage.createMailto =  this.checked;
     });
@@ -12,6 +17,8 @@ var directorySettings = (function(){
 
     if(localStorage.createTel === 'true'){
         $('#settingCreateTel').prop('checked', true);
+    }else{
+        $('#settingCallInPureCloud').prop('checked', true);
     }
 
     if(localStorage.createMailto === 'true'){
