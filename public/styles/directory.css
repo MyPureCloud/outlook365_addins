@@ -37,19 +37,19 @@
 }
 
 .statusAvailable img{
-    border: 3px solid #7d2!important
+    border: 2px solid #7d2!important
 }
 
 .statusBusy img {
-    border: 3px solid #b00!important
+    border: 2px solid #b00!important
 }
 
 .statusAway img {
-    border: 3px solid #fb3!important
+    border: 2px solid #fb3!important
 }
 
-.statusidle img {
-    border: 3px solid #fb3!important
+.statusOffline img {
+    border: 2px solid #666!important
 }
 
 .align-top{
@@ -91,4 +91,8 @@
     border-top: 1px solid #E1E1E1;
     margin-top: 2px;
     padding-top: 2px;
+}
+
+#detailPhoneLink{
+    cursor:pointer;
 }

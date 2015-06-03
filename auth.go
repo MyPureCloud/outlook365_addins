@@ -22,7 +22,7 @@ const (
 )
 
 var (
-	signInUrl, _ = url.Parse("https://auth.us-east-1.inindca.com")
+	signInUrl, _ = url.Parse("https://auth.us-east-1." + os.Getenv("ENV") + ".com")
 )
 
 var cookieStore = sessions.NewCookieStore([]byte(os.Getenv("COOKIESTORE")))

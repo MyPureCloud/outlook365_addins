@@ -16,8 +16,8 @@ import (
 )
 
 var (
-	apiUrl, _      = url.Parse("https://public-api.us-east-1.inindca.com")
-	platformUrl, _ = url.Parse("https://apps.inindca.com/platform")
+	apiUrl, _      = url.Parse("https://public-api.us-east-1." + os.Getenv("ENV") + ".com")
+	platformUrl, _ = url.Parse("https://apps." + os.Getenv("ENV") + ".com/platform")
 )
 
 var (
