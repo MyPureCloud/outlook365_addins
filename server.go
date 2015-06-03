@@ -31,6 +31,7 @@ var (
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/oauth2/callback", callback)
+	r.HandleFunc("/trace", handleTrace)
 	r.HandleFunc("/{page}.html", handlePage)
 	r.HandleFunc("/{file}.xml", handlePage)
 
@@ -62,6 +63,13 @@ func main() {
 		log.Panic(http.ListenAndServe(":"+port, r))
 	}
 
+}
+
+func handleTrace(w http.ResponseWriter, r *http.Request) {
+	//log.Printf("%v", r)
+	contents, _ := ioutil.ReadAll(r.Body)
+
+	log.Printf("LOG: %v", string(contents))
 }
 
 func handleApi(w http.ResponseWriter, r *http.Request) {
