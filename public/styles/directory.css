@@ -36,15 +36,15 @@
     color: #4ea2df;
 }
 
-.statusonline img{
+.statusAvailable img{
     border: 3px solid #7d2!important
 }
 
-.statusbusy img {
+.statusBusy img {
     border: 3px solid #b00!important
 }
 
-.statusaway img {
+.statusAway img {
     border: 3px solid #fb3!important
 }
 
