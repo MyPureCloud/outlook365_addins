@@ -2,6 +2,7 @@ var traceService = (function(){
 
     function traceToServer(level, message){
 
+        return;// keep tracing loal for now
         $.ajax({
             method: 'POST',
             url: '/trace',
@@ -29,7 +30,6 @@ var traceService = (function(){
                 console.log("PureCloudOutlook: " + JSON.stringify(message));
             }
 
-            traceToServer("DEBUG", message)
         },
         error: function(message){
             if(console && console.error){

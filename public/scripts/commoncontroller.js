@@ -52,23 +52,16 @@ function inIframe () {
     }
 }
 
-if(window.location.href.indexOf('?et=') == -1){
-    traceService.error("Not supported in OSX");
 
-    $('body').html("This addin is not supported in OSX")
-    window.location = "/notSupportedInOsx.html"
+traceService.error("calling office.initialize");
+
+if(window.location.href.indexOf("?test") == -1){
+    Office.initialize = function () {
+        startup();
+    };
 }
 else{
-    traceService.error("calling office.initialize");
-
-    if(window.location.href.indexOf("?test") == -1){
-        Office.initialize = function () {
-            startup();
-        };
-    }
-    else{
-        $(document).ready(function(){
-            startup();
-        })
-    }
+    $(document).ready(function(){
+        startup();
+    })
 }
