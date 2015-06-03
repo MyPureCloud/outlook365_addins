@@ -122,10 +122,13 @@ func handlePage(w http.ResponseWriter, r *http.Request) {
 	log.Printf("%v", r.URL)
 
 	fileName := strings.Split(r.URL.String(), "?")[0]
+	if strings.ToLower(fileName) == "/internalinstall.html" {
+		tmpl, _ := template.ParseFiles("public" + fileName)
 
-	if strings.HasSuffix(fileName, "html") {
+		tmpl.Execute(w, nil)
+	} else if strings.HasSuffix(fileName, "html") {
 
-		if !checkSession(w, r) && strings.ToLower(fileName) != "/internalinstall.html" {
+		if !checkSession(w, r) {
 			return
 		}
 
