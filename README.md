@@ -9,6 +9,8 @@ Environment variables
 
 **OAUTHIDID** - The OAuth Client Id
 
+**ENV** - The purecloud environment
+
 Testing Locally
 ---------------
 To test locally, make sure that the above environment variables are set and run the rakefile to build and run the web server.  Import test.xml into your outlook account, this will make a request to load test.html.  

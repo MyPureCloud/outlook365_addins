@@ -1,8 +1,6 @@
 
 var contentmanagement = contentmanagement();
-var traceService = traceService();
 var userService = userService();
-var login = login();
 
 var bodyHeight = 0;
 Office.initialize = function () {

@@ -19,6 +19,10 @@
     max-width:48px;
 }
 
+#detailTitle{
+    text-align: center;
+}
+
 #largeImage{
     max-height:96px;
     max-width:96px;
@@ -60,16 +64,9 @@
     margin-left:auto;
     margin-right:auto;
     width:150px;
-    font-size:smaller;
     margin-top:2px;
     text-align:center;
-}
-
-.personDetailsField>a{
-    font-size:small;
-}
-.personDetailsField>label{
-    font-size:initial;
+    background-color:white;
 }
 
 #personDetails{

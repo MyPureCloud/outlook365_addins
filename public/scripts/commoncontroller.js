@@ -1,3 +1,5 @@
+var traceService = new traceService();
+
 function getFileSizeString(numOfBytes){
 
     if(numOfBytes < 1024){
@@ -53,7 +55,7 @@ function inIframe () {
 }
 
 
-traceService.error("calling office.initialize");
+traceService.log("calling office.initialize");
 
 if(window.location.href.indexOf("?test") == -1){
     Office.initialize = function () {

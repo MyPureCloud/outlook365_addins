@@ -1,10 +1,7 @@
 
 var directory = directory();
-var traceService = traceService();
 var userService = userService();
 var settings = null;
-
-traceService.log("Initializing office addin")
 
 function startup(){
 

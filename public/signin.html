@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>Internal Install Instructions</title>
+    <script>
+    function redirect(){
+        //var loginPopup = window.open(url, "OAuth");
+        //window.location =
+
+        var loginPopup = window.open( "https://auth.us-east-1.inindca.com", "OAuth");
+        var timer = setInterval(function()
+        {
+            getElementById('message').innerText="Window opwn"
+            if(loginPopup.closed) {
+                clearInterval(timer);
+                window.location.reload();
+            }
+        }, 1000);
+
+        Office.initialize = function () {
+            startup();
+        };
+    }
+    </script>
+</head>
+<body>
+
+    <button onclick="redirect()">LOGIN </button>
+<div id='message'></div>
+</body>
+</html>

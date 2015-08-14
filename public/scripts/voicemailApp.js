@@ -1,4 +1,3 @@
-var traceService = traceService();
 
 $("#content-main").hide();
 $("#notLoggedIn").hide();
@@ -36,11 +35,11 @@ function getSessionAndVoicemail(){
 
                 $.ajax({
                     method: 'GET',
-                    url: "/api/v1/"+ data.media +"/media?formatId=AAC",
+                    url: data.media +"/media?formatId=AAC",
                     headers: {
                         'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        'ININ-Session' : login.sessionId(),
+                        'Content-Type': 'application/json'
+
                     },
                     timeout: 2000
                 }).success(function (data, status, headers, config) {

@@ -10,17 +10,17 @@
     <!-- Change the following line to specify the web server where the image file is hosted. -->
     <IconUrl DefaultValue=
         "https://purecloudoffice365.herokuapp.com/images/purecloud.jpg"/>
-    <Capabilities>
-        <Capability Name="Mailbox" />
-    </Capabilities>
-    <DesktopSettings>
-        <SourceLocation DefaultValue="https://purecloudoffice365.herokuapp.com/directory.html"/>
-        <RequestedHeight>250</RequestedHeight>
-    </DesktopSettings>
-
-    <Permissions>ReadItem</Permissions>
-    <Rule xsi:type="RuleCollection" Mode="Or">
-        <Rule xsi:type="ItemIs" ItemType="Message"  />
-        <Rule xsi:type="ItemIs" ItemType="Appointment"  />
-    </Rule>
-</OfficeApp>
+        <Capabilities>
+            <Capability Name="Mailbox" />
+        </Capabilities>
+        <DesktopSettings>
+            <SourceLocation DefaultValue="https://purecloudoffice365.herokuapp.com/directory.html"/>
+            <RequestedHeight>250</RequestedHeight>
+        </DesktopSettings>
+        
+        <Permissions>ReadItem</Permissions>
+        <Rule xsi:type="RuleCollection" Mode="Or">
+            <Rule xsi:type="ItemIs" ItemType="Message"  />
+            <Rule xsi:type="ItemIs" ItemType="Appointment"  />
+        </Rule>
+    </OfficeApp>

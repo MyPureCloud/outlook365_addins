@@ -14,6 +14,7 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 
+    <link href="styles/purecloud.css" rel="stylesheet" type="text/css" />
     <link href="styles/app.css" rel="stylesheet" type="text/css" />
     <link href="styles/directory.css" rel="stylesheet" type="text/css" />
 
@@ -47,9 +48,9 @@
                     </div>
                     <br />
                     <div class="personDetailsField">
-                        <label id="detailName"></label>
+                        <label id="detailName" class='name'></label>
                     </div>
-                    <div id="detailTitle" class="personDetailsField">
+                    <div id="detailTitle" class="">
 
                     </div>
                     <div class="personDetailsField">
@@ -72,17 +73,17 @@
                 <div id='people' style="float:left;max-height:250px">
                     <div class="row ">
 
-                        <div class='col-md-1'>
-                            <label id='fromLabel' style="display:none" class="align-top">From:</label>
-                        </div>
+                        <!--                        <div class='col-md-1'>-->
+                        <label id='fromLabel' style="display:none" class="align-top">From</label>
+                        <!--</div>-->
                         <div id="from" ></div>
                     </div>
 
-                    <div class="row border">
+                    <div class="row ">
 
-                        <div class='col-md-1'>
-                            <label id='toLabel' style="display:none" class="align-top">To: </label>
-                        </div>
+                        <!--                        <div class='col-md-1'>-->
+                        <label id='toLabel' style="display:none" class="align-top">To</label>
+                        <!--</div>-->
                         <div class="col-md-11 container-fluid ">
                             <div id="to" class="row">
                             </div>
@@ -91,11 +92,11 @@
                     </div>
 
 
-                    <div class="row border">
+                    <div class="row ">
 
-                        <div class='col-md-1'>
-                            <label id='ccLabel' style="display:none" class="align-top">Cc:</label>
-                        </div>
+                        <!--<div class='col-md-1'>-->
+                        <label id='ccLabel' style="display:none" class="align-top">Cc</label>
+                        <!--</div>-->
                         <div class="container-fluid col-md-8">
                             <div id="cc" class="row">
                             </div>

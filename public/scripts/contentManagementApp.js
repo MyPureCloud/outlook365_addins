@@ -1,11 +1,5 @@
 
 var contentmanagement = contentmanagement();
-var traceService = traceService();
-
-Office.initialize = function () {
-    startup();
-    loadAttachments();
-};
 
 function workspacesLoaded(workspaceDefinitions){
     traceService.log(workspaceDefinitions)
@@ -75,6 +69,8 @@ function startup(){
         });
     });
 
+    loadAttachments();
+
 }
 
 function showError(message){
@@ -127,11 +123,11 @@ function loadAttachments(){
     $.each(Office.context.mailbox.item.attachments, function(index, value) {
         if(!this.isInline){
             //$('#attachments').append("<div  class='file'><div class='attachmentcolumn'>" + this.name + '</div><span id="helpButton" title="Help" class="glyphicon glyphicon-floppy-disk  saveattachmentbtn attachmentcolumn" aria-hidden="true" data-index="' + index + '" data-type="'+ this.contentType +'" id="'+ this.id + '" ></span></div>');
-            $('#attachments').append('<tr><td style="width:20px"> <span title="Save" class="glyphicon glyphicon-floppy-disk  saveattachmentbtn attachmentcolumn" aria-hidden="true" data-index="' + index + '" data-type="'+ this.contentType +'" id="'+ this.id + '" ></td><td>' + this.name + '</td></tr>');
+            $('#attachments').append('<tr>><td><div class="filename saveattachmentbtn"  data-index="' + index + '" data-type="'+ this.contentType +'" id="'+ this.id + '">' + this.name + '</div></td></tr>');
         }
     });
 
-    traceService.log(attachments);
+    traceService.log(attachments.length + " attachments");
 
     $('.saveattachmentbtn').click(function(e){
         var data = jQuery(e.currentTarget).data();

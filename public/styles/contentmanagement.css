@@ -46,3 +46,12 @@ body{
 table{
     width:95%;
 }
+
+.filename{
+    color: rgb(74, 156, 182);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+}

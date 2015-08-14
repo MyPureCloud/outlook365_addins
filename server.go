@@ -54,6 +54,7 @@ func main() {
 		port = "8080"
 	}
 
+	log.Printf("environment: " + os.Getenv("ENV"))
 	log.Printf("Starting server on " + port)
 
 	if os.Getenv("DYNO") == "" {
@@ -133,7 +134,7 @@ func handlePage(w http.ResponseWriter, r *http.Request) {
 		}
 
 		if fileName == "/test.html" {
-			fileName = "/directory.html"
+			fileName = "/contentManagementItemRead.html"
 		}
 
 		tmpl, _ := template.ParseFiles("public" + fileName)

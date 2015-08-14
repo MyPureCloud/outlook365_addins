@@ -43,7 +43,7 @@ func handlePrepareToAttachFile(w http.ResponseWriter, r *http.Request) {
 
 func handleSaveAttachment(w http.ResponseWriter, r *http.Request) {
 
-	cookie := getAuthToken(r)
+	authToken := getAuthToken(r)
 
 	requestData := &SaveAttachmentData{}
 	dec := json.NewDecoder(r.Body)
@@ -55,20 +55,22 @@ func handleSaveAttachment(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 
-	uploadUrl := createContentManagementDocument(requestData.FileName, requestData.WorkspaceId, cookie)
+	go uploadFileToContentManagement(requestData, authToken, attachmentData)
+}
+
+func uploadFileToContentManagement(requestData *SaveAttachmentData, authToken string, attachmentData []byte) {
+	uploadUrl := createContentManagementDocument(requestData.FileName, requestData.WorkspaceId, authToken)
 
 	if uploadUrl == "" {
-		http.Error(w, "Unable to get file upload url", http.StatusInternalServerError)
+		log.Printf("ERROR: Unable to get file upload url")
+		return
 	}
 
-	err = performMultipartPost(uploadUrl, requestData.FileName, requestData.ContentType, attachmentData)
+	err := performMultipartPost(uploadUrl, requestData.FileName, requestData.ContentType, attachmentData)
 
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	} else {
-		w.WriteHeader(200)
+		log.Printf("ERROR: %+v", err.Error())
 	}
-
 }
 
 func createContentManagementDocument(fileName, workspaceId, purecloudToken string) string {

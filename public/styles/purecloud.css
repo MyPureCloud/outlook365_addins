@@ -1,0 +1,22 @@
+/*These styles were taken from collaborate on 8/14 */
+
+.entity .name {
+  font-size: 18px;
+  font-weight: 700;
+    text-align: center;
+}
+
+body {
+  font-size: 14px;
+  line-height: 1.42857143;
+  height: 100%;
+  overflow-y: hidden;
+  /*background-color: #f6f6f6;*/
+  color: #4c4c4c;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+
+a {
+  color: #55a9c6;
+}

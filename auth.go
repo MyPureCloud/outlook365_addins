@@ -23,6 +23,7 @@ const (
 
 var (
 	signInUrl, _ = url.Parse("https://auth.us-east-1." + os.Getenv("ENV") + ".com")
+	//signInUrl, _ = url.Parse("https://localhost:8080/siginin.html")
 )
 
 var cookieStore = sessions.NewCookieStore([]byte(os.Getenv("COOKIESTORE")))
@@ -71,12 +72,14 @@ func checkSession(w http.ResponseWriter, r *http.Request) bool {
 	})
 
 	target, _ := signInUrl.Parse(authPath)
+	//target := signInUrl //.Parse(authPath)
 	target.RawQuery = url.Values(query).Encode()
 
 	session1.Values["nextUrl"] = r.URL.String()
 	session1.Save(r, w)
 
 	http.Redirect(w, r, target.String(), http.StatusFound)
+	//http.Redirect(w, r, "https://localhost:8080/signin.html", http.StatusFound)
 
 	return false
 }

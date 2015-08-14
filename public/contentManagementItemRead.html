@@ -31,7 +31,6 @@
     <div id="content-main" style="display:none">
         <div class="buttonBar">
             <span id="helpButton" title="Help" class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-            <span id="logoffButton" style="display:none" title="Log off" class="glyphicon glyphicon-off" aria-hidden="true"></span>
 
         </div>
         <p id="errorView" class="bg-danger">
@@ -39,6 +38,7 @@
         </p>
 
         <div id="contentManagementView"  class="content" >
+            <label>Select attachment to save to PureCloud</label>
             <table id='attachments' class="table table-hover table-condensed">
 
             </table>
@@ -48,7 +48,7 @@
 
 
 
-    <div id="saveDialog" class="alert alert-info " role="alert">
+    <div id="saveDialog" class="alert" role="alert">
         <label>File Name:</label> <span id='saveFileName'></span>
         <br/>
         <label>File Size: </label><span id='saveFileSize'></span>
@@ -63,7 +63,7 @@
         <br/>
         <label>Save File Name: </label><input type='text' id='workspaceFilename'></input>
         <br/>
-        <button id='saveAttachment' class="btn btn-primary">Save</button>    <button id='cancelSaveAttachment' class="btn btn-default">Cancel</button>
+        <button id='saveAttachment' class="btn-pc">Save</button>    <button id='cancelSaveAttachment' class="btn-pc-grey">Cancel</button>
 
     </div>
 
@@ -86,16 +86,6 @@
     <button id='closeErrorDialog' class="btn btn-default">OK</button>
     </div>
 
-    <div id="help" class="alert alert-info alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        The Add Ins for Microsoft office are as-is open source (well will be open once we have a public api) applications.
-
-        <br/>
-        <br/>
-
-        <br/>
-        For help or questions, see the PureCloud chat room "Open Source"
-    </div>
 </div>
 </body>
 </html>
