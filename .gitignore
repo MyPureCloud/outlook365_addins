@@ -28,3 +28,4 @@ outlook365addins
 /node_modules
 /localBuild
 /bower_components
+/src/bower_components
