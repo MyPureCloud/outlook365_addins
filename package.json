@@ -1,0 +1,28 @@
+{
+  "name": "PureCloudOutlook365Addins",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "express": "^4.13.1",
+    "gulp": "^3.9.0",
+    "gulp-notify": "*",
+    "gulp-imagemin":"*",
+    "gulp-cache":"*",
+
+    "gulp-rimraf": "^0.1.1",
+    "fs":"*",
+    "gulp-jshint": "*",
+    "gulp-replace":"*"
+  }
+}

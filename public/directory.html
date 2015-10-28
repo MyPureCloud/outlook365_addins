@@ -14,6 +14,8 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 
+    <script type="text/javascript" src="bower_components/purecloud-api/dist/purecloud-api.js"></script>
+
     <link href="styles/purecloud.css" rel="stylesheet" type="text/css" />
     <link href="styles/app.css" rel="stylesheet" type="text/css" />
     <link href="styles/directory.css" rel="stylesheet" type="text/css" />
@@ -32,6 +34,7 @@
 <body>
     <div id="content-main" style="display:none">
         <div class="buttonBar">
+            <span id="logoffButton" title="Log off" class="glyphicon glyphicon-off" aria-hidden="true"></span>
             <span id="helpButton" title="Help" class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
             <span id="settingsButton" style="display:none" title="Settings" class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 
@@ -58,10 +61,7 @@
                         </a>
                         <div id="detailEmail">
                         </div>
-
-
                     </div>
-
 
                     <div class="personDetailsField">
                         <a id="detailPhoneLink"></a>
@@ -80,20 +80,15 @@
                     </div>
 
                     <div class="row ">
-
                         <!--                        <div class='col-md-1'>-->
                         <label id='toLabel' style="display:none" class="align-top">To</label>
                         <!--</div>-->
                         <div class="col-md-11 container-fluid ">
                             <div id="to" class="row">
                             </div>
-
                         </div>
                     </div>
-
-
                     <div class="row ">
-
                         <!--<div class='col-md-1'>-->
                         <label id='ccLabel' style="display:none" class="align-top">Cc</label>
                         <!--</div>-->
@@ -103,16 +98,11 @@
 
                         </div>
                     </div>
-
-
-
                     <br />
 
                 </div>
             </div>
         </div>
-
-
 
         <div id="settings" class="alert alert-info" role="alert">
             <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -127,9 +117,6 @@
 
                 <br/>
                 <br/>
-                <label>Email Addresses</label><br/>
-
-                <input type="checkbox" id='settingCreateMailto'/> Create email addresses as mailto: links
             </form>
         </div>
     </div>

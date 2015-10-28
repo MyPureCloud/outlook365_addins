@@ -14,51 +14,13 @@ var userService = (function(){
         }
     }
 
-
-    function getProperty(data){
-        if(data && data.length > 0){
-            return data[0].value;
-        }
-
-        return "";
-    }
-
-    function getRef(data){
-        if(data && data.length > 0){
-            return data[0].ref;
-        }
-
-        return {};
-    }
-
-    function getStatus(status){
-        if(status && status.orgspan){
-            var orgspan = getRef(status.orgspan);
-            return orgspan.presence.value;
-        }
-
-        return {};
-    }
-
-
     return {
         getUser: function (email, callback) {
             traceService.debug("get user " + JSON.stringify(email))
-            //
-            //restClient.get("/api/v1/contentmanagement/workspaces?pageSize=100&pageNumber=1&access=content")
 
             if(callback != null){
-                $.ajax({
-                    method: 'GET',
-                    url: '/api/v1/users?username=' + email.emailAddress,
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-
-                    },
-                    timeout: 2000
-                }).success(function (data, status, headers, config) {
-                //    data.res.user.personId
+                pureCloud.users.getUsersByEmail(email.emailAddress).then(function (response) {
+                    var data = response.body;
                     if(data.entities.length == 1){
 
                         var user = data.entities[0];
@@ -81,11 +43,8 @@ var userService = (function(){
                     }else{
                         callback(createUser(email.emailAddress, email.displayName))
                     }
-                })
-
+                });
             }
-
-
         }
     }
 });

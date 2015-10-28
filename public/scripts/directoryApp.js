@@ -19,19 +19,9 @@ function startup(){
 }
 
 function call(user){
-    $.ajax({
-        method: 'POST',
-        url: '/api/v1/conversations?callUserId=' + user,
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
+    pureCloud.conversations.placeCall({callUserId:user}).then(function (response) {
 
-        },
-        timeout: 2000,
-        data: {
-
-        }
-    })
+    });
 }
 
 
@@ -57,7 +47,6 @@ function contactClicked(element){
     $('#detailPhoneLink').show();
     $('#detailPhone').hide();
 
-
     $( "#detailPhoneLink" ).unbind();
 
     if(settings.shouldCreateTel() === true){
@@ -73,7 +62,4 @@ function contactClicked(element){
     $("#detailImageContainer").removeClass();
     $("#detailImageContainer").addClass("personDetailsField");
     $('#detailImageContainer').addClass('status' + element.dataset.status);
-
-
-
 }

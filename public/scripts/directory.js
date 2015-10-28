@@ -35,7 +35,6 @@ var directory = (function(){
                 var person = createPersonElement(user);
                 $("#from").html(person);
                 $("#fromLabel").show();
-
             });
 
             var to = Office.context.mailbox.item.to.sort();;
@@ -66,10 +65,6 @@ var directory = (function(){
                     $("#ccLabel").show();
                 });
             }
-
-
-
         }
     }
-
 });

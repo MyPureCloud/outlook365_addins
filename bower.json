@@ -1,0 +1,13 @@
+{
+  "name": "PureCloudOutlook365Addins",
+  "version": "1.0.0",
+  "homepage": "https://github.com/MyPureCloud/outlook365addins",
+  "authors": [
+    "Interactive Intelligence"
+  ],
+  "main": "server.js",
+  "license": "MIT",
+  "dependencies": {
+    "purecloud-api": "~1.0.1"
+  }
+}

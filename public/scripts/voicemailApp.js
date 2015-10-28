@@ -50,13 +50,13 @@ function getSessionAndVoicemail(){
                     $('#audioPlayer').show();
 
 
-                }).error(function(data,status,headers, config){
+                }).error(function(data){
                     traceService.error("Unable to get recording url: " + JSON.stringify(data))
                     $("#errorView").text("Unable to get recording url")
                     $("#errorView").show();
                     $("#loading").hide();
                 });
-            }).error(function(data,status,headers, config){
+            }).error(function(data){
                 traceService.error("unable to find recording: " + JSON.stringify(data))
                     $("#errorView").text("Unable to find recording")
                     $("#errorView").show();
@@ -68,11 +68,8 @@ function getSessionAndVoicemail(){
 }
 
 function startup(){
-
     loadHelpDialog();
-
     getSessionAndVoicemail();
-
 }
 
 if(window.location.href.indexOf("?test") == -1){

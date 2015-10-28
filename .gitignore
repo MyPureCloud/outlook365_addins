@@ -24,3 +24,7 @@ _testmain.go
 *.prof
 
 outlook365addins
+
+/node_modules
+/localBuild
+/bower_components
