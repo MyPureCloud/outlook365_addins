@@ -19,18 +19,27 @@ function getSessionAndVoicemail(){
 
             $.ajax({
                 method: 'POST',
-                url: '/getrecordingurl',
+                url: 'https://y3cazhlrz9.execute-api.us-east-1.amazonaws.com/beta/exchangeTest',// '/lambda',
                 headers: {
-                    'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
                 timeout: 2000,
-                data:JSON.stringify(attachmentData)
+                data: JSON.stringify(attachmentData)
             }).success(function (data, status, headers, config) {
+                traceService.log(data);
 
+                pureCloud.voicemail.messages.getMessages().then(function (response) {
+                    var data = response.body;
+                    for(var i=0; i< data.entities.length; i++){
+                        var message = data.entities[i];
+                        console.log('message: ' + message.AudioRecordingDurationSeconds + ' ' + message.CallerAddress + ' ' + message.CreatedDate );
+                    }
+                });
 
+/*
                 $("#player").show();
                 $("#content-main").hide();
+
 
 
                 $.ajax({
@@ -56,11 +65,13 @@ function getSessionAndVoicemail(){
                     $("#errorView").show();
                     $("#loading").hide();
                 });
+                */
             }).error(function(data){
-                traceService.error("unable to find recording: " + JSON.stringify(data))
+                /*traceService.error("unable to find recording: " + JSON.stringify(data))
                     $("#errorView").text("Unable to find recording")
                     $("#errorView").show();
                     $("#loading").hide();
+                    */
             });
         });
 
@@ -70,15 +81,4 @@ function getSessionAndVoicemail(){
 function startup(){
     loadHelpDialog();
     getSessionAndVoicemail();
-}
-
-if(window.location.href.indexOf("?test") == -1){
-    Office.initialize = function () {
-        startup();
-    };
-}
-else{
-    $(document).ready(function(){
-        startup();
-    })
 }
