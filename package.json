@@ -26,6 +26,8 @@
     "gulp-replace":"*",
     "request":"*",
     "gulp-debug":"*",
-    "shelljs":"*"
+    "shelljs":"*",
+    "proxyquire":"^1.7.3",
+    "gulp-jasmine":"2.2.0"
   }
 }

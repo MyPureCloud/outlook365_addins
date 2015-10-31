@@ -2,7 +2,7 @@ var traceService = (function(){
 
     function traceToServer(level, message){
 
-        return;// keep tracing loal for now
+        return;// keep tracing local for now
         $.ajax({
             method: 'POST',
             url: '/trace',

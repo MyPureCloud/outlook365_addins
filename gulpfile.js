@@ -9,6 +9,12 @@ var replace = require('gulp-replace');
 var rimraf = require('gulp-rimraf');
 var debug = require('gulp-debug');
 require('shelljs/global');
+var jasmine = require('gulp-jasmine');
+
+gulp.task('test', function () {
+    return gulp.src('./spec/**')
+        .pipe(jasmine());
+});
 
 gulp.task('bower', function() {
     return gulp.src('src/bower_components/**/*.*')
@@ -19,13 +25,10 @@ gulp.task('lambda', function() {
     gulp.src('lambda.zip', { read: false })
         .pipe(rimraf());
 
-    var version = exec('zip lambda.zip lambda.js node_modules/request/*', {silent:true}).output;
-    gulp.src('lambda.zip').pipe(gulp.dest('./dist'));
+    exec('zip dist/lambda.zip node_modules/request/*', {silent:true});
+    exec('zip -j dist/lambda.zip src/lambda/lambda.js', {silent:true});
 
-    gulp.src('lambda.zip', { read: false })
-        .pipe(rimraf());
-
-    return
+    return;
 });
 
 
