@@ -5,7 +5,7 @@ var https = require("https");
 var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
-var lambda = require('./lambda');
+var lambda = require('./src/lambda/lambda');
 
 var logger = function(req, res, next) {
     console.log(req.originalUrl);
@@ -17,7 +17,7 @@ app.use(logger);
 app.use(express.static(__dirname + "/src"));
 
 app.get("/test.html", function(req, res){
-    res.redirect("voicemail.html");
+    res.redirect("contentManagementItemRead.html");
 })
 
 app.post("/lambda", function(req, res){

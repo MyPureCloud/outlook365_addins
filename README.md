@@ -20,8 +20,10 @@ Running Locally
   ![](src/web/images/setup/ecpurl.png)
 
   * Select apps from the options list
+
   ![](src/web/images/setup/apps.png)
   * Find the drop down and select Add from File
+
   ![](src/web/images/setup/addfromfile.png)
 
   _If you can't see that setting, you need to request from you outlook admin to enable access to install your own applications._
