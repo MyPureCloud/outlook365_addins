@@ -10,11 +10,42 @@ var rimraf = require('gulp-rimraf');
 var debug = require('gulp-debug');
 require('shelljs/global');
 var jasmine = require('gulp-jasmine');
+var filenames = require("gulp-filenames");
+var fs = require('fs');
 
 var CDN_URL = process.env.CDN_URL || '/';
+var VERSION = process.env.BUILD_NUMBER || 'Not Built'
 
 console.log("Building application");
 console.log("CDN URL: " + CDN_URL);
+
+gulp.task('manifest', function () {
+   return gulp.src("src/web/*.html")
+       .pipe(filenames())
+       .on('end', function() {
+           var files = filenames.get();
+           var currentDate = new Date().toUTCString();
+           var manifest = {
+                       "indexFiles": [],
+                       "name": "github/outlook365addins",
+                       "version": VERSION,
+                       "buildDate" : currentDate,
+                       "buildNumber": VERSION
+                   };
+
+            for(var x=0;x<files.length;x++){
+                manifest.indexFiles.push({
+                    "url": "/github/outlook365addins/" + files[x],
+                    "file": "./" + files[x]
+                });
+            }
+
+            fs.writeFileSync("localBuild/manifest.json", JSON.stringify(manifest, null, " "));
+
+    })
+;
+});
+
 
 gulp.task('test', function () {
     return gulp.src('./spec/**')
@@ -69,7 +100,7 @@ gulp.task('clean', function() {
 gulp.task('html', function() {
 
   return gulp.src('src/web/**/*.html')
-      .pipe(replace(/(src|href){1}=(['"])\/([^\/])/g, '$1=$2$3' + CDN_URL))
+      .pipe(replace(/(src|href){1}=(['"])\//g, '$1=$2' + CDN_URL))
     .pipe(gulp.dest('localBuild'));
 });
 
@@ -77,4 +108,4 @@ gulp.task('watch', function() {
     gulp.watch('./src/web/*.*', ['default']);
 });
 
-gulp.task('default', ['clean', 'bower', 'scripts','images', 'css','html']);
+gulp.task('default', ['clean', 'bower', 'scripts','images', 'css','html', 'manifest']);

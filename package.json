@@ -17,17 +17,18 @@
     "express": "^4.13.1",
     "gulp": "^3.9.0",
     "gulp-notify": "*",
-    "gulp-imagemin":"*",
-    "gulp-cache":"*",
+    "gulp-imagemin": "*",
+    "gulp-cache": "*",
     "body-parser": "*",
     "gulp-rimraf": "^0.1.1",
-    "fs":"*",
+    "fs": "*",
     "gulp-jshint": "*",
-    "gulp-replace":"*",
-    "request":"*",
-    "gulp-debug":"*",
-    "shelljs":"*",
-    "proxyquire":"^1.7.3",
-    "gulp-jasmine":"2.2.0"
+    "gulp-replace": "*",
+    "request": "*",
+    "gulp-debug": "*",
+    "shelljs": "*",
+    "proxyquire": "^1.7.3",
+    "gulp-jasmine": "2.2.0",
+    "gulp-filenames": "~2.0.0"
   }
 }
