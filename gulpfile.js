@@ -11,6 +11,8 @@ var debug = require('gulp-debug');
 require('shelljs/global');
 var jasmine = require('gulp-jasmine');
 
+var CDN_URL = process.env.CDN_URL || '/';
+
 gulp.task('test', function () {
     return gulp.src('./spec/**')
         .pipe(jasmine());
@@ -41,9 +43,7 @@ gulp.task('scripts', function() {
     ));
 */
 
-  return gulp.src('src/scripts/**/*.js')
-    //.pipe(jshint('.jshintrc'))
-    //.pipe(jshint.reporter('default'))
+  return gulp.src('src/web/scripts/**/*.js')
     .pipe(gulp.dest('localBuild/scripts'));
 });
 
@@ -66,7 +66,7 @@ gulp.task('clean', function() {
 gulp.task('html', function() {
 
   return gulp.src('src/web/**/*.html')
-      .pipe(replace(/foo/g, 'bar'))
+      .pipe(replace(/(src|href){1}=(['"])\/[^\/]/g, '$1=$2' + CDN_URL))
     .pipe(gulp.dest('localBuild'));
 });
 

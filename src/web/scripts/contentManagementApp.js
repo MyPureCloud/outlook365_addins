@@ -1,19 +1,16 @@
+function handleWorkspaces(data){
+    if(data != null){
+        var options = $("#workspaces")
 
-var contentmanagement = contentmanagement();
+        $.each(data.body.entities, function() {
+            options.append($("<option />").val(this.id).text(this.name));
+        });
 
-function workspacesLoaded(workspaceDefinitions){
-    traceService.log(workspaceDefinitions)
-
-    var options = $("#workspaces")
-
-    $.each(workspaceDefinitions, function() {
-        options.append($("<option />").val(this.id).text(this.name));
-    });
-
+        pureCloud.paging.nextPage(data.body).then(handleWorkspaces);
+    }
 }
 
-traceService.log("Initializing cm office addin")
-
+traceService.log("Initializing contentmanagement office addin")
 
 function startup(){
 
@@ -39,10 +36,11 @@ function startup(){
 
     $("#contentManagementView").show();
     $("#loginView").hide();
-    contentmanagement.getWorkspaces(workspacesLoaded);
+
+    pureCloud.contentManagement.workspaces.getWorkspaces().then(handleWorkspaces);
+
     $('#logoffButton').show();
     $('#settingsButton').show();
-
 
     $('#saveAttachment').click(function(){
 
@@ -56,17 +54,41 @@ function startup(){
             return;
         }
 
-        contentmanagement.loadFiles($("#workspaces").val(), 0 , $('#workspaceFilename').val(), 0, function(pages, count, files){
-            traceService.log(files)
+        var searchBody = {
+              "pageNumber": page,
+              "pageSize": 50,
+              "queryPhrase": "",
+              "facetNameRequests": ["tags","createdByDisplayName","contentType","name", "contentLength", "dateModified"],
+              "sort": [
+                {
+                  "name": "name",
+                  "ascending": false
+                }
+              ],
+              "filters": [
+                  {
+                    "systemFilter": false,
+                    "id": "workspaceId",
+                    "type": "STRING",
+                    "name": "workspaceId",
+                    "operator": "EQUALS",
+                    "values": [workspaceId]
+                }
+              ],
+              "queryPhrase":searchString
 
-            if(files.length > 0){
+          };
+
+        pureCloud.contentManagement.query(searchBody).then(response){
+            var data = response.body;
+
+            if(data.results.entities.length > 0){
                 $('#duplicateFileDialog').show();
             }
             else{
                 completeSave();
             }
-
-        });
+        }
     });
 
     loadAttachments();

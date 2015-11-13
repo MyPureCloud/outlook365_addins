@@ -47,40 +47,20 @@ var contentmanagement = (function(){
                     }
                   ],
                   "filters": [
-
+                      {
+                        "systemFilter": false,
+                        "id": "workspaceId",
+                        "type": "STRING",
+                        "name": "workspaceId",
+                        "operator": "EQUALS",
+                        "values": [
+                          workspaceId
+                        ]
+                    }
                   ],
                   "queryPhrase":searchString
 
               };
-
-              if(workspaceId != null && workspaceId.length > 0){
-                  searchBody.filters.push({
-                    "systemFilter": false,
-                    "id": "workspaceId",
-                    "type": "STRING",
-                    "name": "workspaceId",
-                    "operator": "EQUALS",
-                    "values": [
-                      workspaceId
-                    ]
-                });
-              }
-
-              //102400
-              if(maxSize != null && maxSize>0){
-                  searchBody.filters.push({
-                    "systemFilter": false,
-                    "id": "contentLength",
-                    "type": "NUMBER",
-                    "operator": "RANGE",
-                    "name": "contentLength",
-                    "values": [
-                      0,
-                      maxSize
-                    ]
-                  })
-              }
-
 
             currentPage = 1;
             $.ajax({
