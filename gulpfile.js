@@ -53,7 +53,7 @@ gulp.task('test', function () {
 });
 
 gulp.task('bower', function() {
-    return gulp.src('src/bower_components/**/*.*')
+    return gulp.src('src/web/bower_components/**/*.*')
         .pipe(gulp.dest('localBuild/bower_components/'))
 });
 

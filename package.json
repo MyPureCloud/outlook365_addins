@@ -5,12 +5,12 @@
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/MyPureCloud/outlook365addins"
   },
-  "author": "",
+  "author": "Interactive Intelligence",
   "license": "MIT",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/MyPureCloud/outlook365addins/issues"
   },
   "homepage": "",
   "devDependencies": {
