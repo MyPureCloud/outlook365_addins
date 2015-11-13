@@ -69,7 +69,7 @@ gulp.task('clean', function() {
 gulp.task('html', function() {
 
   return gulp.src('src/web/**/*.html')
-      .pipe(replace(/(src|href){1}=(['"])\/[^\/]/g, '$1=$2' + CDN_URL))
+      .pipe(replace(/(src|href){1}=(['"])\/([^\/])/g, '$1=$2$3' + CDN_URL))
     .pipe(gulp.dest('localBuild'));
 });
 
