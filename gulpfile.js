@@ -13,6 +13,9 @@ var jasmine = require('gulp-jasmine');
 
 var CDN_URL = process.env.CDN_URL || '/';
 
+console.log("Building application");
+console.log("CDN URL: " + CDN_URL);
+
 gulp.task('test', function () {
     return gulp.src('./spec/**')
         .pipe(jasmine());
