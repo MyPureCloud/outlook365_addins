@@ -29,6 +29,7 @@
     "shelljs": "*",
     "proxyquire": "^1.7.3",
     "gulp-jasmine": "2.2.0",
-    "gulp-filenames": "~2.0.0"
+    "gulp-filenames": "~2.0.0",
+    "bower":"*"
   }
 }
