@@ -27,7 +27,7 @@ gulp.task('manifest', function () {
            var currentDate = new Date().toUTCString();
            var manifest = {
                        "indexFiles": [],
-                       "name": "github/outlook365addins",
+                       "name": "github-outlook365addins",
                        "version": VERSION,
                        "buildDate" : currentDate,
                        "buildNumber": VERSION
@@ -35,7 +35,7 @@ gulp.task('manifest', function () {
 
             for(var x=0;x<files.length;x++){
                 manifest.indexFiles.push({
-                    "url": "/github/outlook365addins/" + files[x],
+                    "url": "/github-outlook365addins/" + files[x],
                     "file": "./" + files[x]
                 });
             }
