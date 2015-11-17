@@ -17,7 +17,7 @@ app.use(logger);
 app.use(express.static(__dirname + "/src/web"));
 
 app.get("/test.html", function(req, res){
-    res.redirect("contentManagementItemRead.html");
+    res.redirect("directory.html");
 })
 
 app.post("/lambda", function(req, res){

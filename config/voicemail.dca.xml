@@ -8,12 +8,12 @@
     <DisplayName DefaultValue="PureCloud Voicemail" />
     <Description DefaultValue="Listen to PureCloud voicemails right in Outlook"/>    <!-- Change the following line to specify the web server where the image file is hosted. -->
     <IconUrl DefaultValue=
-        "https://purecloudoffice365.herokuapp.com/images/purecloud.jpg"/>
+        "https://apps.inindca.com/github/outlook365addins/purecloud.jpg"/>
     <Capabilities>
         <Capability Name="Mailbox" />
     </Capabilities>
     <DesktopSettings>
-        <SourceLocation DefaultValue="https://purecloudoffice365.herokuapp.com/voicemail.html"/>
+        <SourceLocation DefaultValue="https://apps.inindca.com/github/outlook365addins/voicemail.html"/>
         <RequestedHeight>50</RequestedHeight>
     </DesktopSettings>
 

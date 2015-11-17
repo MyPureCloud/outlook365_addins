@@ -1,28 +1,20 @@
-var contentmanagement = (function(){
-    currentPage = 0;
+/*global PureCloud:false */
+/*exported contentmanagement */
+/* jshint -W097 */
+'use strict';
 
+var contentmanagement = (function(){
+    var currentPage = 0;
 
     return{
         getWorkspaces:function(callback) {
-
-            if(callback != null){
-                $.ajax({
-                    method: 'GET',
-                    url: '/api/v1/contentmanagement/workspaces?pageSize=100&pageNumber=1&access=content',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'text/plain'
-                    },
-                    timeout: 2000
-                }).success(function (data, status, headers, config) {
+            if(callback !== null){
+                PureCloud.contentmanagement.getWorkspaces(100,1,"content").done(function(data){
                     var workspaceDefinitions = data.entities;
-                    var workspaces = {};
-
                     callback(workspaceDefinitions);
-                }).error(function(data, status,headers,config){
+                }).error(function(){
                     location.reload();
-                })
-
+                });
             }
 
         },
@@ -31,7 +23,6 @@ var contentmanagement = (function(){
             var searchBody = {
                   "pageNumber": page,
                   "pageSize": 50,
-                  "queryPhrase": "",
                   "facetNameRequests": [
                     "tags",
                     "createdByDisplayName",
@@ -72,12 +63,12 @@ var contentmanagement = (function(){
                 },
                 timeout: 200000,
                 data:JSON.stringify(searchBody  )
-            }).success(function (data, status, headers, config) {
+            }).success(function (data) {
                 if(callback){
                     callback(data.results.pageCount, data.results.total, data.results.entities);
                 }
-            })
+            });
         }
-    }
+    };
 
 });

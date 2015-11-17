@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="MailApp">
-    <Id>1DE00E7D-AA6C-46CD-8F2F-931B62650187</Id>
+    <Id>22811e1e-8d38-11e5-82b4-600308a98970</Id>
     <Version>1.0.0.0</Version>
     <ProviderName>Interactive Intelligence Open Source</ProviderName>
     <DefaultLocale>en-US</DefaultLocale>
     <DisplayName DefaultValue="Content Management" />
     <Description DefaultValue="Access PureCloud content management from outlook to save items to content management."/>
-    <IconUrl DefaultValue="https://purecloudoffice365.herokuapp.com/images/purecloud.jpg" />
+    <IconUrl DefaultValue="https://apps.ininsca.com/github/outlook365addins/purecloud.jpg" />
     <Hosts>
         <Host Name="Mailbox" />
     </Hosts>
@@ -18,7 +18,7 @@
     <FormSettings>
         <Form xsi:type="ItemRead">
             <DesktopSettings>
-                <SourceLocation DefaultValue="https://purecloudoffice365.herokuapp.com/contentManagementItemRead.html"/>
+                <SourceLocation DefaultValue="https://apps.ininsca.com/github/outlook365addins/contentManagementItemRead.html"/>
                 <RequestedHeight>250</RequestedHeight>
             </DesktopSettings>
         </Form>

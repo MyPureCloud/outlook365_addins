@@ -1,20 +1,12 @@
+/*exported traceService */
+/* jshint -W097 */
+'use strict';
+
 var traceService = (function(){
 
     function traceToServer(level, message){
-
+        level = message;
         return;// keep tracing local for now
-        $.ajax({
-            method: 'POST',
-            url: '/trace',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': "text/plain",
-
-            },
-            timeout: 2000,
-            data: level + " - " + message
-        })
-
     }
 
     return{
@@ -23,7 +15,7 @@ var traceService = (function(){
                 console.log("PureCloudOutlook: " + JSON.stringify(message));
             }
 
-            traceToServer("LOG", message)
+            traceToServer("LOG", message);
         },
         debug: function(message){
             if(console && console.log){
@@ -36,8 +28,8 @@ var traceService = (function(){
                 console.error("PureCloudOutlook: " + JSON.stringify(message));
             }
 
-            traceToServer("ERROR", message)
+            traceToServer("ERROR", message);
         }
-    }
+    };
 
 });

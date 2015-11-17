@@ -1,16 +1,27 @@
+/*global Office:false */
+/*global PureCloud:false */
+/*global traceService:false */
+/*global loadHelpDialog:false */
+/*exported handleWorkspaces */
+/*exported startup */
+/*exported inIframe */
+/* jshint -W097 */
+'use strict';
+var mailId = null;
+
 function handleWorkspaces(data){
-    if(data != null){
-        var options = $("#workspaces")
+    if(data !== null){
+        var options = $("#workspaces");
 
         $.each(data.body.entities, function() {
             options.append($("<option />").val(this.id).text(this.name));
         });
 
-        pureCloud.paging.nextPage(data.body).then(handleWorkspaces);
+        PureCloud.get(data.body.nextUri).done(handleWorkspaces);
     }
 }
 
-traceService.log("Initializing contentmanagement office addin")
+traceService.log("Initializing contentmanagement office addin");
 
 function startup(){
 
@@ -30,34 +41,33 @@ function startup(){
         completeSave();
     });
 
-    traceService.log("starting")
+    traceService.log("starting");
     $("#content-main").show();
     $("#loginView").hide();
 
     $("#contentManagementView").show();
     $("#loginView").hide();
 
-    pureCloud.contentManagement.workspaces.getWorkspaces().then(handleWorkspaces);
+    PureCloud.contentmanagement.workspaces.getWorkspaces().done(handleWorkspaces);
 
     $('#logoffButton').show();
     $('#settingsButton').show();
 
     $('#saveAttachment').click(function(){
 
-        if($("#workspaces").val().length == 0){
+        if($("#workspaces").val().length === 0){
             showError("Workspace not set.");
             return;
         }
 
-        if($("#workspaceFilename").val().length == 0){
+        if($("#workspaceFilename").val().length === 0){
             showError("Filename not set.");
             return;
         }
 
         var searchBody = {
-              "pageNumber": page,
+              "pageNumber": 0,
               "pageSize": 50,
-              "queryPhrase": "",
               "facetNameRequests": ["tags","createdByDisplayName","contentType","name", "contentLength", "dateModified"],
               "sort": [
                 {
@@ -72,14 +82,14 @@ function startup(){
                     "type": "STRING",
                     "name": "workspaceId",
                     "operator": "EQUALS",
-                    "values": [workspaceId]
+                    "values": [$("#workspaces").val()]
                 }
               ],
-              "queryPhrase":searchString
+              "queryPhrase":""
 
           };
 
-        pureCloud.contentManagement.query(searchBody).then(response){
+        PureCloud.contentmanagement.query.queryContent(searchBody).done(function(response){
             var data = response.body;
 
             if(data.results.entities.length > 0){
@@ -88,7 +98,7 @@ function startup(){
             else{
                 completeSave();
             }
-        }
+        });
     });
 
     loadAttachments();
@@ -101,7 +111,7 @@ function showError(message){
 }
 
 function completeSave(){
-
+/*  Requires lambda function
     var attachmentId = $('#saveFileId').text();
     var ewsUrl = Office.context.mailbox.ewsUrl;
 
@@ -125,7 +135,7 @@ function completeSave(){
                 },
                 timeout: 2000,
                 data:JSON.stringify(attachmentData)
-            }).success(function (data, status, headers, config) {
+            }).success(function (data) {
                 $("#saveSuccess").show();
                 $("#saveDialog").hide();
 
@@ -133,7 +143,8 @@ function completeSave(){
                     $("#saveSuccess").hide();
                 }, 1500);
             });
-        });
+
+        });*/
 }
 
 function loadAttachments(){
@@ -142,14 +153,12 @@ function loadAttachments(){
 
     traceService.log(Office.context.mailbox.item.attachments);
 
-    $.each(Office.context.mailbox.item.attachments, function(index, value) {
+    $.each(Office.context.mailbox.item.attachments, function(index) {
         if(!this.isInline){
             //$('#attachments').append("<div  class='file'><div class='attachmentcolumn'>" + this.name + '</div><span id="helpButton" title="Help" class="glyphicon glyphicon-floppy-disk  saveattachmentbtn attachmentcolumn" aria-hidden="true" data-index="' + index + '" data-type="'+ this.contentType +'" id="'+ this.id + '" ></span></div>');
             $('#attachments').append('<tr>><td><div class="filename saveattachmentbtn"  data-index="' + index + '" data-type="'+ this.contentType +'" id="'+ this.id + '">' + this.name + '</div></td></tr>');
         }
     });
-
-    traceService.log(attachments.length + " attachments");
 
     $('.saveattachmentbtn').click(function(e){
         var data = jQuery(e.currentTarget).data();

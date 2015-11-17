@@ -1,3 +1,12 @@
+/*global PureCloud:false */
+/*global loadHelpDialog:false */
+/*global directorySettings:false */
+/*global traceService:false */
+/*exported startup */
+/*exported call */
+/*exported contactClicked */
+/* jshint -W097 */
+'use strict';
 
 var directory = directory();
 var userService = userService();
@@ -9,7 +18,7 @@ function startup(){
 
     settings = directorySettings();
 
-    traceService.log("starting")
+    traceService.log("starting");
     $("#content-main").show();
 
     $("#directoryView").show();
@@ -19,11 +28,8 @@ function startup(){
 }
 
 function call(user){
-    pureCloud.conversations.placeCall({callUserId:user}).then(function (response) {
-
-    });
+    PureCloud.conversations.createConversation(null, null, null, user);
 }
-
 
 function contactClicked(element){
     $('#personDetails').show();
@@ -53,7 +59,7 @@ function contactClicked(element){
         $('#detailPhoneLink').attr("href", "tel:" + element.dataset.phone);
 
     }else{
-        $('#detailPhoneLink').click(function(elem){
+        $('#detailPhoneLink').click(function(){
             call(element.dataset.id);
         });
     }

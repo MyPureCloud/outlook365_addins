@@ -1,3 +1,10 @@
+/*global Office:false */
+/*global traceService:false */
+/*global loadHelpDialog:false */
+/*global PureCloud:false */
+/*exported startup */
+/* jshint -W097 */
+'use strict';
 
 $("#content-main").hide();
 $("#notLoggedIn").hide();
@@ -6,7 +13,7 @@ function getSessionAndVoicemail(){
     $("#content-main").hide();
     $("#loading").show();
 
-    mailId = Office.context.mailbox.item.itemId;
+    var mailId = Office.context.mailbox.item.itemId;
 
     var ewsUrl = Office.context.mailbox.ewsUrl;
 
@@ -25,10 +32,10 @@ function getSessionAndVoicemail(){
                 },
                 timeout: 2000,
                 data: JSON.stringify(attachmentData)
-            }).success(function (data, status, headers, config) {
+            }).success(function (data) {
                 traceService.log(data);
 
-                pureCloud.voicemail.messages.getMessages().then(function (response) {
+                PureCloud.voicemail.messages.getMessages().done(function (response) {
                     var data = response.body;
                     for(var i=0; i< data.entities.length; i++){
                         var message = data.entities[i];
@@ -67,11 +74,11 @@ function getSessionAndVoicemail(){
                 });
                 */
             }).error(function(data){
-                /*traceService.error("unable to find recording: " + JSON.stringify(data))
-                    $("#errorView").text("Unable to find recording")
+                traceService.error("unable to find recording: " + JSON.stringify(data));
+                    $("#errorView").text("Unable to find recording");
                     $("#errorView").show();
                     $("#loading").hide();
-                    */
+
             });
         });
 

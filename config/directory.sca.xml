@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Created:cb85b80c-f585-40ff-8bfc-12ff4d0e34a9-->
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="MailApp">
-    <Id>64f9a763-4081-43d9-b2de-e70cd4d88efa</Id>
+    <Id>ce675992-8d37-11e5-aff6-600308a98970</Id>
     <Version>1.4.0.0</Version>
     <ProviderName>Interactive Intelligence Open Source</ProviderName>
     <DefaultLocale>en-US</DefaultLocale>
@@ -9,15 +9,15 @@
     <Description DefaultValue="View user information from PureCloud Directory.  This application is open source and is provided as-is."/>
     <!-- Change the following line to specify the web server where the image file is hosted. -->
     <IconUrl DefaultValue=
-        "https://purecloudoffice365.herokuapp.com/images/purecloud.jpg"/>
+        "https://apps.ininsca.com/github/outlook365addins/purecloud.jpg"/>
         <Capabilities>
             <Capability Name="Mailbox" />
         </Capabilities>
         <DesktopSettings>
-            <SourceLocation DefaultValue="https://purecloudoffice365.herokuapp.com/directory.html"/>
+            <SourceLocation DefaultValue="https://apps.ininsca.com/github/outlook365addins/directory.html"/>
             <RequestedHeight>250</RequestedHeight>
         </DesktopSettings>
-        
+
         <Permissions>ReadItem</Permissions>
         <Rule xsi:type="RuleCollection" Mode="Or">
             <Rule xsi:type="ItemIs" ItemType="Message"  />

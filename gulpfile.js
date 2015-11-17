@@ -40,6 +40,11 @@ gulp.task('manifest', function () {
                 });
             }
 
+            manifest.indexFiles.push({
+                "url": "/github-outlook365addins/purecloud.jpg",
+                "file": ".//purecloud.jpg"
+            });
+
             fs.writeFileSync("localBuild/manifest.json", JSON.stringify(manifest, null, " "));
 
     })
@@ -67,18 +72,11 @@ gulp.task('lambda', function() {
     return;
 });
 
-
 gulp.task('scripts', function() {
-/*
-    require('fs').writeFileSync('localBuild/scripts/config.js', JSON.stringify(
-        {
-            build: '1234'
-        }
-    ));
-*/
-
-  return gulp.src('src/web/scripts/**/*.js')
-    .pipe(gulp.dest('localBuild/scripts'));
+    return gulp.src('src/web/scripts/*.js')
+        .pipe(jshint({ es5: false }))
+        .pipe(jshint.reporter('default'))
+        .pipe(gulp.dest('localBuild/scripts'));
 });
 
 gulp.task('images', function() {

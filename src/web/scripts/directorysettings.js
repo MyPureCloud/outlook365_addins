@@ -1,6 +1,7 @@
+/*exported directorySettings */
+/* jshint -W097 */
+'use strict';
 var directorySettings = (function(){
-
-
     $('#settingCreateTel').change(function() {
         localStorage.createTel =  this.checked;
     });
@@ -18,7 +19,7 @@ var directorySettings = (function(){
     return{
         shouldCreateTel: function(){
             if(localStorage.createTel){
-                return localStorage.createTel == "true";
+                return localStorage.createTel === "true";
             }
 
             return false;
@@ -26,6 +27,6 @@ var directorySettings = (function(){
         shouldCreateMailto: function(){
             return false;
         }
-    }
+    };
 
 });
