@@ -14,7 +14,7 @@ var logger = function(req, res, next) {
 
 app.use(bodyParser.json());
 app.use(logger);
-app.use(express.static(__dirname + "/src/web"));
+app.use(express.static(__dirname + "/localBuild"));
 
 app.get("/test.html", function(req, res){
     res.redirect("directory.html");

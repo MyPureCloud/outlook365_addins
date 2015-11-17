@@ -19,6 +19,22 @@ var VERSION = process.env.BUILD_NUMBER || 'Not Built'
 console.log("Building application");
 console.log("CDN URL: " + CDN_URL);
 
+function createAnalytics(){
+    var file = "";
+
+    if(process.env.ANALYTICS != null){
+        file = "// jshint ignore: start\n"+"(function(i,s,o,g,r,a,m){i.GoogleAnalyticsObject=r;i[r]=i[r]||function(){"+
+        "(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),"+
+        "m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)"+
+        "})(window,document,'script','//www.google-analytics.com/analytics.js','ga');"+
+
+        "ga('create', '"+ process.env.ANALYTICS+"', 'auto');" +
+        "ga('send', 'pageview');";
+    }
+
+    fs.writeFileSync("src/web/scripts/analytics.js", file);
+};
+
 gulp.task('manifest', function () {
    return gulp.src("src/web/*.html")
        .pipe(filenames())
@@ -73,7 +89,9 @@ gulp.task('lambda', function() {
 });
 
 gulp.task('scripts', function() {
-    return gulp.src('src/web/scripts/*.js')
+    createAnalytics();
+
+    return gulp.src('src/web/scripts/**/*.js')
         .pipe(jshint({ es5: false }))
         .pipe(jshint.reporter('default'))
         .pipe(gulp.dest('localBuild/scripts'));
