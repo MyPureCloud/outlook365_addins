@@ -79,12 +79,12 @@ function authorizeAndStart(){
         return;
     }
 
+    environment = (environment === "localhost") ? "inindca" : environment;
     sessionStorage.app = window.location.pathname + window.location.search;
     if(!PureCloud.hasAuthorizationToken()){
-        PureCloud.authorize(clientId, 'https://localhost:8080/auth.html', 'inindca');
+        PureCloud.authorize(clientId, callback, environment);
         return;
     }else{
-        environment = (environment === "localhost") ? "inindca" : environment;
         PureCloud.setEnvironment(environment);
     }
 
