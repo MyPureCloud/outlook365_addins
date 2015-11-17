@@ -6,7 +6,7 @@
     <DefaultLocale>en-US</DefaultLocale>
     <DisplayName DefaultValue="Content Management" />
     <Description DefaultValue="Access PureCloud content management from outlook to save items to content management."/>
-    <IconUrl DefaultValue="https://apps.ininsca.com/github/outlook365addins/purecloud.jpg" />
+    <IconUrl DefaultValue="https://apps.ininsca.com/github-outlook365addins/purecloud.jpg" />
     <Hosts>
         <Host Name="Mailbox" />
     </Hosts>
@@ -18,7 +18,7 @@
     <FormSettings>
         <Form xsi:type="ItemRead">
             <DesktopSettings>
-                <SourceLocation DefaultValue="https://apps.ininsca.com/github/outlook365addins/contentManagementItemRead.html"/>
+                <SourceLocation DefaultValue="https://apps.ininsca.com/github-outlook365addins/contentManagementItemRead.html"/>
                 <RequestedHeight>250</RequestedHeight>
             </DesktopSettings>
         </Form>

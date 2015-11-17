@@ -8,12 +8,12 @@
     <DisplayName DefaultValue="PureCloud Voicemail" />
     <Description DefaultValue="Listen to PureCloud voicemails right in Outlook"/>    <!-- Change the following line to specify the web server where the image file is hosted. -->
     <IconUrl DefaultValue=
-        "https://apps.ininsca.com/github/outlook365addins/purecloud.jpg"/>
+        "https://apps.ininsca.com/github-outlook365addins/purecloud.jpg"/>
     <Capabilities>
         <Capability Name="Mailbox" />
     </Capabilities>
     <DesktopSettings>
-        <SourceLocation DefaultValue="https://apps.ininsca.com/github/outlook365addins/voicemail.html"/>
+        <SourceLocation DefaultValue="https://apps.ininsca.com/github-outlook365addins/voicemail.html"/>
         <RequestedHeight>50</RequestedHeight>
     </DesktopSettings>
 

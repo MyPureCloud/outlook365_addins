@@ -58,8 +58,8 @@ function authorizeAndStart(){
 
     var environments = {
         inindca: {
-            clientId: "c08fd793-f867-4fcc-bf8c-4f92b294f53c",
-            callback: "https://localhost:8080/auth.html"
+            clientId: "80718713-aa6c-4f7d-bf25-69d9c5e9df2a",
+            callback: "https://apps.inindca.com/github-outlook365addins/auth.html"
         },
         ininsca: {
             clientId: "c08fd793-f867-4fcc-bf8c-4f92b294f53c",
