@@ -57,8 +57,8 @@ gulp.task('manifest', function () {
             }
 
             manifest.indexFiles.push({
-                "url": "/github-outlook365addins/images/setup/purecloud.jpg",
-                "file": ".//purecloud.jpg"
+                "url": "/github-outlook365addins/images/purecloud.jpg",
+                "file": "./purecloud.jpg"
             });
 
             fs.writeFileSync("localBuild/manifest.json", JSON.stringify(manifest, null, " "));
