@@ -91,13 +91,13 @@ function authorizeAndStart(){
     startup();
 }
 
-if(window.location.href.indexOf("?test") === -1){
+/*if(window.location.href.indexOf("?test") === -1){
     Office.initialize = function () {
         authorizeAndStart();
     };
 }
-else{
+else{*/
     $(document).ready(function(){
         authorizeAndStart();
     });
-}
+//}
