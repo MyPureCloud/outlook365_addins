@@ -121,7 +121,7 @@ gulp.task('html', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch('./src/web/*.*', ['default']);
+    gulp.watch('./src/web/**/*.*', ['default']);
 });
 
 gulp.task('default', ['clean', 'bower', 'scripts','images', 'css','html', 'manifest']);

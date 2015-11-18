@@ -17,7 +17,7 @@ app.use(logger);
 app.use(express.static(__dirname + "/localBuild"));
 
 app.get("/test.html", function(req, res){
-    res.redirect("shell.html?test=1");
+    res.redirect("directory.html");
 })
 
 app.post("/lambda", function(req, res){
@@ -41,9 +41,9 @@ var sslOptions = {
 
 
 var httpServer = http.createServer(app);
-var httpsServer = https.createServer(sslOptions, app);
+//httpServer = https.createServer(sslOptions, app);
 
-var httpsPort = 8080;
-console.log("starting on " + httpsPort);
+var port = 8080;
+console.log("starting on " + port);
 
-httpsServer.listen(httpsPort);
+httpServer.listen(port);

@@ -22,7 +22,7 @@ function startup(){
     $("#content-main").show();
 
     $("#directoryView").show();
-    //directory.loadDirectoryInfo();
+    directory.loadDirectoryInfo();
     $('#settingsButton').show();
 
 }

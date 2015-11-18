@@ -55,7 +55,7 @@ function authorizeAndStart(){
     var callback = "";
 
     var environment = window.location.hostname.replace(/(apps|com|\.)/g,"");
-
+    
     var environments = {
         inindca: {
             clientId: "80718713-aa6c-4f7d-bf25-69d9c5e9df2a",
@@ -91,13 +91,13 @@ function authorizeAndStart(){
     startup();
 }
 
-/*if(window.location.href.indexOf("?test") === -1){
+if(window.location.href.indexOf("?test") === -1){
     Office.initialize = function () {
         authorizeAndStart();
     };
 }
-else{*/
+else{
     $(document).ready(function(){
         authorizeAndStart();
     });
-//}
+}
