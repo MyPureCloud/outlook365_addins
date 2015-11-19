@@ -1,3 +1,5 @@
+/*global Office:false */
+/*global Mustache:false */
 /*global PureCloud:false */
 /*global loadHelpDialog:false */
 /*global directorySettings:false */
@@ -58,7 +60,6 @@ function loadDirectoryInfo() {
     }
 
     function processCcUser(user){
-        var person = createPersonElement(user);
         $("#cc").html($("#cc").html()  + generateTemplate(user));
         $("#ccLabel").show();
     }
@@ -93,7 +94,7 @@ function contactClicked(element){
     var template = $('#personDetailsTemplate').html();
     var html = Mustache.to_html(template, element.dataset);
     $("#personDetails").html(html);
-    
+
     //$('#largeImage').attr("src", element.dataset.picture);
     //$('#detailName').text(element.dataset.name);
     //$('#detailTitle').text(element.dataset.title);
