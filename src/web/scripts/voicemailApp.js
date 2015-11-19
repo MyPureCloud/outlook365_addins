@@ -14,7 +14,6 @@ function getSessionAndVoicemail(){
     $("#loading").show();
 
     var mailId = Office.context.mailbox.item.itemId;
-
     var ewsUrl = Office.context.mailbox.ewsUrl;
 
     Office.context.mailbox.getCallbackTokenAsync(function (ar) {
@@ -46,8 +45,6 @@ function getSessionAndVoicemail(){
 /*
                 $("#player").show();
                 $("#content-main").hide();
-
-
 
                 $.ajax({
                     method: 'GET',

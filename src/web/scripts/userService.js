@@ -22,7 +22,7 @@ var userService = (function(){
         };
     }
 
-    return {
+    return { 
         getUser: function (email, callback) {
             traceService.debug("get user " + JSON.stringify(email));
 
@@ -50,6 +50,8 @@ var userService = (function(){
                     }else{
                         callback(createUser(email.emailAddress, email.displayName));
                     }
+                }).error(function(){
+                    callback(createUser(email.emailAddress, email.displayName));
                 });
             }
         }
