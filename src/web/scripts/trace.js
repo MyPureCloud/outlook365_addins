@@ -12,7 +12,6 @@ var traceService = (function(){
 
     return{
         log: function(message){
-            $("#logtest").html($("#logtest").html()+ message + " ");
             if(console && console.log){
                 console.log("PureCloudOutlook: " + JSON.stringify(message));
             }
@@ -20,8 +19,6 @@ var traceService = (function(){
             traceToServer("LOG", message);
         },
         debug: function(message){
-            $("#logtest").html($("#logtest").html()+ message + " ");
-            
             if(console && console.log){
                 console.log("PureCloudOutlook: " + JSON.stringify(message));
             }

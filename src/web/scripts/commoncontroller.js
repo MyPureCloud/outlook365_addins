@@ -22,22 +22,6 @@ function getFileSizeString(numOfBytes){
     return Math.round(mb) + " MB";
 }
 
-$( document ).ready(function() {
-    $('#settings').hide();
-    $('#settingsButton').click(function(){
-        $('#settings').show();
-    });
-
-    $(".close").click(function(){
-        $(this).parent().hide();
-    });
-
-    $('#logoffButton').click(function(){
-        PureCloud.logout();
-    });
-});
-
-
 function inIframe () {
     try {
         return window.self !== window.top;
@@ -95,16 +79,22 @@ function authorizeAndStart(){
         PureCloud.setEnvironment(purecloudEnvironment);
     }
 
+    $('#settings').hide();
+    $('#settingsButton').click(function(){
+        $('#settings').show();
+    });
+
+    $(".close").click(function(){
+        $(this).parent().hide();
+    });
+
+    $('#logoffButton').click(function(){
+        PureCloud.logout();
+    });
+
     startup();
 }
 
-if(window.location.href.indexOf("?test") === -1){
-    Office.initialize = function () {
-        authorizeAndStart();
-    };
-}
-else{
-    $(document).ready(function(){
-        authorizeAndStart();
-    });
-}
+Office.initialize = function () {
+    authorizeAndStart();
+};
