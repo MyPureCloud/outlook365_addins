@@ -16,19 +16,19 @@ var userService = (function(){
             phone: phone,
             department: department,
             title: title,
-            status: status,
+            status: status.replace(/ /g,''),
             id: id
 
         };
     }
 
-    return { 
+    return {
         getUser: function (email, callback) {
             traceService.debug("get user " + JSON.stringify(email));
 
             if(callback !== null){
-                PureCloud.users.getUsers(null,null, null, null, null, null, email.emailAddress).done(function (response) {
-                    var data = response.body;
+                PureCloud.users.getUsers(null,null, null, null, null, null, email.emailAddress).done(function (data) {
+
                     if(data.entities.length === 1){
 
                         var user = data.entities[0];

@@ -29,7 +29,7 @@
 
 </head>
 <body>
-
+    start
     <div id="content-main" style="display:none">
         <div class="buttonBar">
             <span id="logoffButton" title="Log off" class="glyphicon glyphicon-off" aria-hidden="true"></span>
@@ -98,7 +98,7 @@
             </form>
         </div>
         <script id='personDetailsTemplate' type='text/template'>
-            <div class="personDetailsField status{{status}}" id="detailImageContainer">
+            <div data-id='{{id}}' class="personDetailsField status{{status}}" id="detailImageContainer">
                 <img class="entity-image" id="largeImage" src="{{picture}}"  />
             </div>
             <br />
@@ -138,9 +138,9 @@
                     data-department='{{department}}'
                     data-title='{{title}}'
                     data-email='{{email}}'
-                    data-picture='{{picture}}'
+                    data-picture='{{largePicture}}'
                     data-status='{{status}}'  >
-                <img src='{{picture}}' class='entity-image'></img>
+                <img src='{{picture}}'  class='entity-image'></img>
                 <span style='position:relative'>{{name}}</span>
             </span>
             {{/phone}}

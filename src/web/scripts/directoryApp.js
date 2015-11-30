@@ -12,6 +12,8 @@
 
 var userService = userService();
 var settings = null;
+var webSocket = null;
+var channelId = null;
 
 function generateTemplate(personData){
     var template = $('#personTpl').html();
@@ -20,30 +22,57 @@ function generateTemplate(personData){
 }
 
 function loadDirectoryInfo() {
+    var userIds = [];
 
     var from = Office.context.mailbox.item.from ;
+    var to = Office.context.mailbox.item.to.sort();
+    var cc = Office.context.mailbox.item.cc.sort();
+
     if(from === null)
     {
         from = Office.context.mailbox.item.organizer;
     }
 
+    if(to === null){
+        to = Office.context.mailbox.item.requiredAttendees.sort();
+    }
+
+    if(cc === null)
+    {
+        cc= Office.context.mailbox.item.optionalAttendees;
+    }
+
+    var contactCount = 1 + to.length + cc.length;
+
     traceService.debug("from : " + JSON.stringify(from));
 
     userService.getUser(from, function (user) {
+        userIds.push(user.id);
         var person = generateTemplate(user);
         $("#from").html(person);
         $("#fromLabel").show();
+        subscribeToUserStatus(userIds);
     });
 
-    var to = Office.context.mailbox.item.to.sort();
+    function subscribeToUserStatus(userIds){
+        if(contactCount > userIds.length){
+            return;
+        }
 
-    if(to === null){
-        to = Office.context.mailbox.item.requiredAttendees.sort();
+        var subscriptionList = [];
+
+        for(var index=0; index < userIds.length; index++){
+            subscriptionList.push ({"id": "users."+ userIds[index] +".status"});
+        }
+        PureCloud.notifications.channels.subscriptions.addSubscription(channelId, subscriptionList);
+
     }
 
     traceService.debug(to);
 
     function processToUser(user){
+        userIds.push(user.id);
+        subscribeToUserStatus(userIds);
         $("#to").html($("#to").html() + generateTemplate(user));
         $("#toLabel").show();
     }
@@ -52,16 +81,12 @@ function loadDirectoryInfo() {
         userService.getUser(to[t], processToUser);
     }
 
-    var cc = Office.context.mailbox.item.cc;
-
-    if(cc === null)
-    {
-        cc= Office.context.mailbox.item.optionalAttendees;
-    }
-
     function processCcUser(user){
+
         $("#cc").html($("#cc").html()  + generateTemplate(user));
         $("#ccLabel").show();
+        userIds.push(user.id);
+        subscribeToUserStatus(userIds);
     }
 
     for(var c=0; c<cc.length; c++){
@@ -70,17 +95,48 @@ function loadDirectoryInfo() {
 }
 
 function startup(){
-
     loadHelpDialog();
-
     settings = directorySettings();
 
     traceService.log("starting");
-    $("#content-main").show();
 
+    $("#content-main").show();
     $("#directoryView").show();
+
     loadDirectoryInfo();
+
     $('#settingsButton').show();
+
+    PureCloud.notifications.channels.createChannel().done(function(data){
+        channelId = data.id;
+        //start a new web socket using the connect Uri of the channel
+        webSocket = new WebSocket(data.connectUri);
+
+        webSocket.onmessage = function(socketMessage) {
+            var message =  JSON.parse(socketMessage.data);
+
+            if(message.topicName.match(/users.*status/)){
+                console.log("WEBSOCKET: "+ JSON.stringify(message));
+                var userId =message.eventBody.id;
+                var newStatus = message.eventBody.status.name.replace(/ /g,'');
+
+                var spanSelector = "span[data-id='"+ userId +"']";
+                var imageSelector = "div[data-id='"+ userId +"']," + spanSelector;
+
+                $(imageSelector).removeClass (function (index, css) {
+                    return (css.match (/status[A-Za-z]*/) || []).join(' ');
+                });
+
+                $(imageSelector).addClass("status" + newStatus);
+                console.log("WEBSOCKET: data status " + $(spanSelector).data("status"));
+                
+                $(spanSelector).attr('data-status', newStatus);
+
+                console.log("WEBSOCKET: data status new " + $(spanSelector).data("status"));
+            }
+
+        };
+    });
 
 }
 
@@ -95,25 +151,13 @@ function contactClicked(element){
     var html = Mustache.to_html(template, element.dataset);
     $("#personDetails").html(html);
 
-    //$('#largeImage').attr("src", element.dataset.picture);
-    //$('#detailName').text(element.dataset.name);
-    //$('#detailTitle').text(element.dataset.title);
-    //$('#detailDepartment').text(element.dataset.department);
-
     if(settings.shouldCreateMailto() === true){
-        //$('#detailEmailLink').attr("href", "mailto:" + element.dataset.email);
-        //$('#detailEmailLink').text(element.dataset.email);
         $('#detailEmailLink').show();
         $('#detailEmail').hide();
     }else{
-        //$('#detailEmail').text(element.dataset.email);
         $('#detailEmail').show();
         $('#detailEmailLink').hide();
     }
-
-    //$('#detailPhoneLink').text(element.dataset.phone);
-    //$('#detailPhoneLink').show();
-    //$('#detailPhone').hide();
 
     $( "#detailPhoneLink" ).unbind();
 
@@ -127,7 +171,4 @@ function contactClicked(element){
     }
 
     $('#people').addClass('paddedLists');
-    //$("#detailImageContainer").removeClass();
-    //$("#detailImageContainer").addClass("personDetailsField");
-    //$('#detailImageContainer').addClass('status' + element.dataset.status);
 }

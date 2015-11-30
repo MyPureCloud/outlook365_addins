@@ -9,6 +9,13 @@
 $("#content-main").hide();
 $("#notLoggedIn").hide();
 
+function setError(message, data){
+    traceService.error(message +": " + JSON.stringify(data));
+    $("#errorView").text(message);
+    $("#errorView").show();
+    $("#loading").hide();
+}
+
 function getSessionAndVoicemail(){
     $("#content-main").hide();
     $("#loading").show();
@@ -25,7 +32,8 @@ function getSessionAndVoicemail(){
 
             $.ajax({
                 method: 'POST',
-                url: 'https://y3cazhlrz9.execute-api.us-east-1.amazonaws.com/beta/exchangeTest',// '/lambda',
+                //url: 'https://y3cazhlrz9.execute-api.us-east-1.amazonaws.com/beta/exchangeTest',// '/lambda',
+                url: '/lambda',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -34,48 +42,40 @@ function getSessionAndVoicemail(){
             }).success(function (data) {
                 traceService.log(data);
 
-                PureCloud.voicemail.messages.getMessages().done(function (response) {
-                    var data = response.body;
-                    for(var i=0; i< data.entities.length; i++){
-                        var message = data.entities[i];
-                        console.log('message: ' + message.AudioRecordingDurationSeconds + ' ' + message.CallerAddress + ' ' + message.CreatedDate );
-                    }
-                });
-
-/*
                 $("#player").show();
                 $("#content-main").hide();
 
-                $.ajax({
-                    method: 'GET',
-                    url: data.media +"/media?formatId=AAC",
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
+                function showRecordingUrlError(data){
+                    setError("Unable to get recording url" , data);
+                }
 
-                    },
-                    timeout: 2000
-                }).success(function (data, status, headers, config) {
-                    traceService.log("got recording, showing player")
-                    $('#audioPlayer').attr("src", data.mediaFileUri);
+                function showRecording(messsage){
+                    traceService.log("got recording, showing player");
+                    $('#audioPlayer').attr("src", messsage.mediaFileUri);
                     $("#content-main").show();
                     $("#loading").hide();
                     $('#audioPlayer').show();
+                }
 
+                PureCloud.voicemail.messages.getVoicemailMessages().done(function (response) {
+                    var data = response.body;
+                    for(var i=0; i< data.entities.length; i++){
+                        var message = message.entities[i];
+                        console.log('message: ' + message.AudioRecordingDurationSeconds + ' ' + message.CallerAddress + ' ' + message.CreatedDate );
 
+                        if(true){
+                            PureCloud.voicemail.messages.media(message.id, "AAC")
+                                        .done(showRecording)
+                                        .error(showRecordingUrlError);
+                        }
+
+                    }
                 }).error(function(data){
-                    traceService.error("Unable to get recording url: " + JSON.stringify(data))
-                    $("#errorView").text("Unable to get recording url")
-                    $("#errorView").show();
-                    $("#loading").hide();
+                    setError("Unable to get voicemail messages", data);
                 });
-                */
-            }).error(function(data){
-                traceService.error("unable to find recording: " + JSON.stringify(data));
-                    $("#errorView").text("Unable to find recording");
-                    $("#errorView").show();
-                    $("#loading").hide();
 
+            }).error(function(data){
+                setError("Unable to find recording details", data);
             });
         });
 
