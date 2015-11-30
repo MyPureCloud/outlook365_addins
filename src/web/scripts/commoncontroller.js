@@ -69,6 +69,8 @@ function authorizeAndStart(){
         app = window.location.pathname.match(/[a-zA-Z]*\.html/)[0];
     }
 
+    document.writeln(window.location.href + " " + callback);
+/*
     if(!PureCloud.hasAuthorizationToken()){
         traceService.debug("authorize token not present");
 
@@ -92,7 +94,7 @@ function authorizeAndStart(){
         PureCloud.logout();
     });
 
-    startup();
+    startup();*/
 }
 
 Office.initialize = function () {
