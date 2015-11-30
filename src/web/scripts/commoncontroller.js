@@ -77,18 +77,24 @@ function authorizeAndStart(){
         return;
     }
 
-    environment = (environment === "localhost") ? "inindca.com" : environment + ".com";
-    sessionStorage.app = window.location.pathname + window.location.search;
+    var purecloudEnvironment = environment + ".com";
+    var app = "/github-outlook365addins/" + window.location.pathname.match(/[a-zA-Z]*\.html/)[0];
+
+    if(environment === "localhost"){
+        purecloudEnvironment = "inindca.com";
+        app = "/github-outlook365addins/" + window.location.pathname.match(/[a-zA-Z]*\.html/)[0];
+    }
+
     if(!PureCloud.hasAuthorizationToken()){
         traceService.debug("authorize token not present");
 
         var app = window.location.pathname.match(/[a-zA-Z]*\.html/)[0];
 
-        PureCloud.authorize(clientId, callback, app, environment);
+        PureCloud.authorize(clientId, callback, app, purecloudEnvironment);
         return;
     }else{
         traceService.debug("authorize token present, setting environment");
-        PureCloud.setEnvironment(environment);
+        PureCloud.setEnvironment(purecloudEnvironment);
     }
 
     startup();
