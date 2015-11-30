@@ -20,9 +20,13 @@
         function startup(){
              document.write("Hello world");
         }
+
+        Office.initialize = function () {
             $('#textdiv').text(window.location.href);
 
-        window.location.replace(window.location.origin+'/github-outlook365addins/auth.html');
+            window.location.replace(window.location.origin+'/github-outlook365addins/auth.html');
+
+        };
         </script>
 
         <!--<script src="/scripts/commoncontroller.js" type="text/javascript"></script>-->
