@@ -78,7 +78,7 @@ function authorizeAndStart(){
     }
 
     var purecloudEnvironment = environment + ".com";
-    var app = "/github-outlook365addins/" + window.location.pathname.match(/[a-zA-Z]*\.html/)[0];
+    var app = "github-outlook365addins/" + window.location.pathname.match(/[a-zA-Z]*\.html/)[0];
 
     if(environment === "localhost"){
         purecloudEnvironment = "inindca.com";
