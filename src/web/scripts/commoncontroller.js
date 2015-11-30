@@ -82,13 +82,11 @@ function authorizeAndStart(){
 
     if(environment === "localhost"){
         purecloudEnvironment = "inindca.com";
-        app = "/github-outlook365addins/" + window.location.pathname.match(/[a-zA-Z]*\.html/)[0];
+        app = window.location.pathname.match(/[a-zA-Z]*\.html/)[0];
     }
 
     if(!PureCloud.hasAuthorizationToken()){
         traceService.debug("authorize token not present");
-
-        var app = window.location.pathname.match(/[a-zA-Z]*\.html/)[0];
 
         PureCloud.authorize(clientId, callback, app, purecloudEnvironment);
         return;
