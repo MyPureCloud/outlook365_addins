@@ -31,45 +31,52 @@ function inIframe () {
 }
 
 function authorizeAndStart(){
-    traceService.debug("authorize and start called");
-    var clientId = "";
-    var callback = "";
+    try {
+        traceService.debug("authorize and start called");
+        var clientId = "";
+        var callback = "";
 
-    var environment = window.location.hostname.replace(/(apps|com|\.)/g,"");
-    traceService.debug("environment " + environment);
+        var environment = window.location.hostname.replace(/(apps|com|\.)/g,"");
+        traceService.debug("environment " + environment);
 
-    var environments = {
-        inindca: {
-            clientId: "80718713-aa6c-4f7d-bf25-69d9c5e9df2a",
-            callback: "https://apps.inindca.com/github-outlook365addins/auth.html"
-        },
-        ininsca: {
-            clientId: "c08fd793-f867-4fcc-bf8c-4f92b294f53c",
-            callback: "https://localhost:8080/auth.html"
-        },
-        localhost: {
-            clientId: "c08fd793-f867-4fcc-bf8c-4f92b294f53c",
-            callback: "https://localhost:8080/auth.html"
+        var environments = {
+            inindca: {
+                clientId: "80718713-aa6c-4f7d-bf25-69d9c5e9df2a",
+                callback: "https://apps.inindca.com/github-outlook365addins/auth.html"
+            },
+            ininsca: {
+                clientId: "c08fd793-f867-4fcc-bf8c-4f92b294f53c",
+                callback: "https://localhost:8080/auth.html"
+            },
+            localhost: {
+                clientId: "c08fd793-f867-4fcc-bf8c-4f92b294f53c",
+                callback: "https://localhost:8080/auth.html"
+            }
+        };
+
+        if(environments[environment] !== null){
+            clientId = environments[environment].clientId;
+            callback = environments[environment].callback;
+        }else{
+            traceService.log("Unsupported environment " + environment );
+            return;
         }
-    };
 
-    if(environments[environment] !== null){
-        clientId = environments[environment].clientId;
-        callback = environments[environment].callback;
-    }else{
-        traceService.log("Unsupported environment " + environment );
-        return;
+        var purecloudEnvironment = environment + ".com";
+        var app = "github-outlook365addins/" + window.location.pathname.match(/[a-zA-Z]*\.html/)[0];
+
+        if(environment === "localhost"){
+            purecloudEnvironment = "inindca.com";
+            app = window.location.pathname.match(/[a-zA-Z]*\.html/)[0];
+        }
+
+        document.writeln(window.location.href + " " + callback);
+
+    } catch (e) {
+        document.writeln(JSON.stringify(e));
+    } finally {
+
     }
-
-    var purecloudEnvironment = environment + ".com";
-    var app = "github-outlook365addins/" + window.location.pathname.match(/[a-zA-Z]*\.html/)[0];
-
-    if(environment === "localhost"){
-        purecloudEnvironment = "inindca.com";
-        app = window.location.pathname.match(/[a-zA-Z]*\.html/)[0];
-    }
-
-    document.writeln(window.location.href + " " + callback);
 /*
     if(!PureCloud.hasAuthorizationToken()){
         traceService.debug("authorize token not present");

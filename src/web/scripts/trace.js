@@ -5,7 +5,6 @@
 var traceService = (function(){
 
     function traceToServer(level, message){
-        document.writeln(message);
         level = message;
         return;// keep tracing local for now
     }
