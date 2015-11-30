@@ -5,7 +5,7 @@
 var traceService = (function(){
 
     function traceToServer(level, message){
-
+        document.writeln(message);
         level = message;
         return;// keep tracing local for now
     }
@@ -22,7 +22,7 @@ var traceService = (function(){
             if(console && console.log){
                 console.log("PureCloudOutlook: " + JSON.stringify(message));
             }
-
+            traceToServer("LOG", message);
         },
         error: function(message){
             if(console && console.error){
