@@ -17,7 +17,7 @@ app.use(logger);
 app.use(express.static(__dirname + "/localBuild"));
 
 app.get("/test.html", function(req, res){
-    res.redirect("directory.html");
+    res.redirect("osxtest.html");
 })
 
 app.post("/lambda", function(req, res){
