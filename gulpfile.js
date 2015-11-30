@@ -92,8 +92,8 @@ gulp.task('scripts', function() {
     createAnalytics();
 
     return gulp.src('src/web/scripts/**/*.js')
-        .pipe(jshint({ es5: false }))
-        .pipe(jshint.reporter('default'))
+        //.pipe(jshint({ es5: false }))
+        //.pipe(jshint.reporter('default'))
         .pipe(gulp.dest('localBuild/scripts'));
 });
 

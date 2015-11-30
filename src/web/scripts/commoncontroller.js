@@ -77,11 +77,14 @@ function authorizeAndStart(){
         return;
     }
 
-    environment = (environment === "localhost") ? "inindca" : environment;
+    environment = (environment === "localhost") ? "inindca.com" : environment;
     sessionStorage.app = window.location.pathname + window.location.search;
     if(!PureCloud.hasAuthorizationToken()){
         traceService.debug("authorize token not present");
-        PureCloud.authorize(clientId, callback, environment);
+
+        var app = window.location.pathname.match(/[a-zA-Z]*\.html/)[0];
+
+        PureCloud.authorize(clientId, callback, app, environment);
         return;
     }else{
         traceService.debug("authorize token present, setting environment");
