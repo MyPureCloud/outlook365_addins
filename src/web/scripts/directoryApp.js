@@ -116,7 +116,6 @@ function startup(){
             var message =  JSON.parse(socketMessage.data);
 
             if(message.topicName.match(/users.*status/)){
-                console.log("WEBSOCKET: "+ JSON.stringify(message));
                 var userId =message.eventBody.id;
                 var newStatus = message.eventBody.status.name.replace(/ /g,'');
 
@@ -128,11 +127,7 @@ function startup(){
                 });
 
                 $(imageSelector).addClass("status" + newStatus);
-                console.log("WEBSOCKET: data status " + $(spanSelector).data("status"));
-                
                 $(spanSelector).attr('data-status', newStatus);
-
-                console.log("WEBSOCKET: data status new " + $(spanSelector).data("status"));
             }
 
         };

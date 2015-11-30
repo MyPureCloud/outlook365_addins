@@ -61,7 +61,7 @@ function getSessionAndVoicemail(){
                     var data = response.body;
                     for(var i=0; i< data.entities.length; i++){
                         var message = message.entities[i];
-                        console.log('message: ' + message.AudioRecordingDurationSeconds + ' ' + message.CallerAddress + ' ' + message.CreatedDate );
+                        traceService.log('message: ' + message.AudioRecordingDurationSeconds + ' ' + message.CallerAddress + ' ' + message.CreatedDate );
 
                         if(true){
                             PureCloud.voicemail.messages.media(message.id, "AAC")

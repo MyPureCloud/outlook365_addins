@@ -46,16 +46,14 @@ function inIframe () {
     }
 }
 
-
-traceService.log("calling office.initialize");
-
 function authorizeAndStart(){
-
+    traceService.debug("authorize and start called");
     var clientId = "";
     var callback = "";
 
     var environment = window.location.hostname.replace(/(apps|com|\.)/g,"");
-    
+    traceService.debug("environment " + environment);
+
     var environments = {
         inindca: {
             clientId: "80718713-aa6c-4f7d-bf25-69d9c5e9df2a",
@@ -75,16 +73,18 @@ function authorizeAndStart(){
         clientId = environments[environment].clientId;
         callback = environments[environment].callback;
     }else{
-        console.log("Unsupported environment " + environment );
+        traceService.log("Unsupported environment " + environment );
         return;
     }
 
     environment = (environment === "localhost") ? "inindca" : environment;
     sessionStorage.app = window.location.pathname + window.location.search;
     if(!PureCloud.hasAuthorizationToken()){
+        traceService.debug("authorize token not present");
         PureCloud.authorize(clientId, callback, environment);
         return;
     }else{
+        traceService.debug("authorize token present, setting environment");
         PureCloud.setEnvironment(environment);
     }
 

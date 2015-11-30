@@ -5,12 +5,14 @@
 var traceService = (function(){
 
     function traceToServer(level, message){
+
         level = message;
         return;// keep tracing local for now
     }
 
     return{
         log: function(message){
+            $("#logtest").html($("#logtest").html()+ message + " ");
             if(console && console.log){
                 console.log("PureCloudOutlook: " + JSON.stringify(message));
             }
@@ -18,6 +20,8 @@ var traceService = (function(){
             traceToServer("LOG", message);
         },
         debug: function(message){
+            $("#logtest").html($("#logtest").html()+ message + " ");
+            
             if(console && console.log){
                 console.log("PureCloudOutlook: " + JSON.stringify(message));
             }
