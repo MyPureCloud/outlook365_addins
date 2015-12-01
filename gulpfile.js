@@ -40,9 +40,11 @@ function createAnalytics(){
         "ga('send', 'pageview');";
     }
 
-    file += "var CDN_URL='" + CDN_URL + "'";
-
     fs.writeFileSync("src/web/scripts/analytics.js", file);
+};
+
+function createCdn(){
+    fs.writeFileSync("src/web/scripts/cdn.js",  "var CDN_URL= '"+ CDN_URL +"'");
 };
 
 gulp.task('manifest', function () {
@@ -69,6 +71,16 @@ gulp.task('manifest', function () {
             manifest.indexFiles.push({
                 "url": "/github-outlook365addins/purecloud.jpg",
                 "file": "./images/purecloud.jpg"
+            });
+
+            manifest.indexFiles.push({
+                "url": "/github-outlook365addins/analytics.js",
+                "file": "./scripts/analytics.js"
+            });
+
+            manifest.indexFiles.push({
+                "url": "/github-outlook365addins/cdn.js",
+                "file": "./scripts/cdn.js"
             });
 
             fs.writeFileSync("localBuild/manifest.json", JSON.stringify(manifest, null, " "));
@@ -100,6 +112,7 @@ gulp.task('lambda', function() {
 
 gulp.task('scripts', function() {
     createAnalytics();
+    createCdn();
 
     return gulp.src('src/web/scripts/**/*.js')
         //.pipe(jshint({ es5: false }))
@@ -126,7 +139,7 @@ gulp.task('clean', function() {
 gulp.task('html', function() {
 
   return gulp.src('src/web/**/*.html')
-      .pipe(replace(/(src|href){1}=(['"])\//g, '$1=$2' + CDN_URL))
+      .pipe(replace(/(src|href){1}=(['"])\/(?!cdn|analytics)/g, '$1=$2' + CDN_URL))
     .pipe(gulp.dest('localBuild'));
 });
 

@@ -28,5 +28,6 @@ outlook365addins
 /node_modules
 /localBuild
 /src/web/scripts/analytics.js
+/src/web/scripts/cdn.js
 /dist
 /src/web/bower_components

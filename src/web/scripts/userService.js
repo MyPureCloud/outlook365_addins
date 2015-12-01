@@ -6,6 +6,8 @@
 
 'use strict';
 
+CDN_URL = CDN_URL || "/"
+
 var userService = (function(){
     var OUTLOOK_FOR_MAC_USER_AGENT = /^Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit\/\d\d\d.\d+.\d+ (KHTML, like Gecko)$/
 
