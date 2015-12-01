@@ -31,6 +31,7 @@ function inIframe () {
 }
 
 function authorizeAndStart(){
+
     try {
         traceService.debug("authorize and start called");
         var clientId = "";
@@ -39,12 +40,6 @@ function authorizeAndStart(){
         var environment = window.location.hostname.replace(/(apps|com|\.)/g,"");
         traceService.debug("environment " + environment);
 
-        if(environment == "12920360ngrok"){
-            environment = "localhost";
-        }
-        if(environment == "office365addinv2herokuapp"){
-            environment = "inindca";
-        }
         var environments = {
             inindca_forreal: {
                 clientId: "80718713-aa6c-4f7d-bf25-69d9c5e9df2a",
@@ -54,20 +49,9 @@ function authorizeAndStart(){
                 clientId: "c08fd793-f867-4fcc-bf8c-4f92b294f53c",
                 callback: "https://localhost:8080/auth.html"
             },
-            inindca:{
-                clientId: "5c0964d9-2cd0-4fe2-9f36-748da1abe701",
-                callback: "https://office365addinv2.herokuapp.com/auth.html"
-            },
-
-/*
             localhost: {
                 clientId: "c08fd793-f867-4fcc-bf8c-4f92b294f53c",
                 callback: "https://localhost:8080/auth.html"
-            },*/
-            localhost: {
-                callback: "https://12920360.ngrok.com/github-outlook365addins/auth.html",// "https://12920360.ngrok.com/auth.html",
-                clientId: "cfa84537-8988-4f7e-af7c-ef48625f1000"
-
             }
         };
 
@@ -88,14 +72,10 @@ function authorizeAndStart(){
         }
 
     } catch (e) {
-        document.writeln(JSON.stringify(e));
-    } finally {
-
+        traceService.error(JSON.stringify(e));
     }
 
     if(!PureCloud.hasAuthorizationToken()){
-        traceService.debug("authorize token not present");
-
         PureCloud.authorize(clientId, callback, app, purecloudEnvironment);
         return;
     }else{
@@ -117,6 +97,10 @@ function authorizeAndStart(){
     });
 
     startup();
+
+    loadHelpDialog();
+    $("#useragent").html( navigator.userAgent);
+
 }
 
 Office.initialize = function () {

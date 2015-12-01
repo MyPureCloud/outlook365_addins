@@ -14,13 +14,13 @@ var logger = function(req, res, next) {
 
 app.use(bodyParser.json());
 app.use(logger);
-//app.use(express.static(__dirname + "/localBuild"));
-app.use(express.static(__dirname + "/src/web"));
+app.use(express.static(__dirname + "/localBuild"));
+//app.use(express.static(__dirname + "/src/web"));
 
-app.use('/github-outlook365addins', express.static(__dirname + "/src/web"));
+app.use('/github-outlook365addins', express.static(__dirname + "/localBuild"));
 
 app.get("/test.html", function(req, res){
-    res.redirect("osxtest.html");
+    res.redirect("directory.html");
 })
 
 app.post("/lambda", function(req, res){
@@ -44,7 +44,7 @@ var sslOptions = {
 
 
 var httpServer = http.createServer(app);
-//httpServer = https.createServer(sslOptions, app);
+httpServer = https.createServer(sslOptions, app);
 
 var port = process.env.PORT || 8080;
 console.log("starting on " + port);

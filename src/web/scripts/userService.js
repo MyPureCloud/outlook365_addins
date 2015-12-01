@@ -7,6 +7,8 @@
 'use strict';
 
 var userService = (function(){
+    var OUTLOOK_FOR_MAC_USER_AGENT = /^Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit\/\d\d\d.\d+.\d+ (KHTML, like Gecko)$/
+
     function createUser(email, name, pictureUrl, largepictureUrl, phone, department, title, status, id) {
         return {
             name: name,
@@ -33,14 +35,14 @@ var userService = (function(){
 
                         var user = data.entities[0];
                         var name = user.name;
-                        var image = "/images/unknownuser48.png";
-                        var largeImage = "/images/unknownuser96.png";
-/*
-                        if(user.userImages !== null && user.userImages.length >= 2){
+                        var image = CDN_URL + "images/unknownuser48.png";
+                        var largeImage = CDN_URL + "images/unknownuser96.png";
+
+                        if(user.userImages !== null && user.userImages.length >= 2 && !navigator.userAgent.match(OUTLOOK_FOR_MAC_USER_AGENT )){
                             image = user.userImages[0].imageUri;
                             largeImage = user.userImages[1].imageUri;
                         }
-*/
+
                         var phone = user.phoneNumber;
                         var department = user.department;
                         var status= user.status.name;

@@ -1,3 +1,6 @@
+//    https://dhqbrvplips7x-cloudfront-net-6utcaoovepde.runscope.net/github-outlook365addins/71/
+//    https://dhqbrvplips7x.cloudfront.net/github-outlook365addins/71/
+
 'use strict';
 
 var gulp = require('gulp'),
@@ -14,6 +17,11 @@ var filenames = require("gulp-filenames");
 var fs = require('fs');
 
 var CDN_URL = process.env.CDN_URL || '/';
+
+if(process.env.WEB_APP_VERSION){
+    CDN_URL = "https://cdn.rawgit.com/MyPureCloud/outlook365addins/"+ process.env.WEB_APP_VERSION +"/src/web";
+}
+
 var VERSION = process.env.BUILD_NUMBER || 'Not Built'
 
 console.log("Building application");
@@ -31,6 +39,8 @@ function createAnalytics(){
         "ga('create', '"+ process.env.ANALYTICS+"', 'auto');" +
         "ga('send', 'pageview');";
     }
+
+    file += "var CDN_URL='" + CDN_URL + "'";
 
     fs.writeFileSync("src/web/scripts/analytics.js", file);
 };
