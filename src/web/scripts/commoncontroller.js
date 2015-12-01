@@ -41,7 +41,7 @@ function authorizeAndStart(){
         traceService.debug("environment " + environment);
 
         var environments = {
-            inindca_forreal: {
+            inindca: {
                 clientId: "80718713-aa6c-4f7d-bf25-69d9c5e9df2a",
                 callback: "https://apps.inindca.com/github-outlook365addins/auth.html"
             },
