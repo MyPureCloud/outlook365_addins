@@ -43,7 +43,7 @@ function authorizeAndStart(){
             environment = "localhost";
         }
         if(environment == "office365addinv2herokuapp"){
-            environment = inindca;
+            environment = "inindca";
         }
         var environments = {
             inindca_forreal: {
