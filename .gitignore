@@ -29,3 +29,4 @@ outlook365addins
 /localBuild
 /src/web/scripts/analytics.js
 /dist
+/src/web/bower_components
