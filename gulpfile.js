@@ -19,7 +19,7 @@ var fs = require('fs');
 var CDN_URL = process.env.CDN_URL || '/';
 
 if(process.env.BUILD_NUMBER){
-    CDN_URL = "https://cdn.rawgit.com/MyPureCloud/outlook365addins/"+ process.env.BUILD_NUMBER +"/src/web";
+    CDN_URL = "https://cdn.rawgit.com/MyPureCloud/outlook365addins/"+ process.env.BUILD_NUMBER +"/src/web/";
 }
 
 var VERSION = process.env.BUILD_NUMBER || 'Not Built'
