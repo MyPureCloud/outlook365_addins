@@ -37,3 +37,7 @@ Running Locally
       res.redirect("voicemail.html");
   })
   ```
+
+  The CDN Mess
+  ------------
+  We host static files on cloudfront which allows us to version them and let the browser cache them to quicken requests.  This is great except that Outlook for Mac doesn't seem to like to load the files from cloudfront.  Oddly enough, if I use ngrok they load fine, handlebars is loaded from cloudflare and that loads fine and if I proxy the files through runscope before hitting cloudfront, they also load fine.  WTF.  So instead of using cloudflare for the assets we will load them through rawgit which will pull them out of github for the tagged build.  
