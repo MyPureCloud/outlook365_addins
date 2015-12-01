@@ -54,10 +54,10 @@ function authorizeAndStart(){
                 clientId: "c08fd793-f867-4fcc-bf8c-4f92b294f53c",
                 callback: "https://localhost:8080/auth.html"
             },
-            inindca:{ 
+            inindca:{
                 clientId: "5c0964d9-2cd0-4fe2-9f36-748da1abe701",
                 callback: "https://office365addinv2.herokuapp.com/auth.html"
-            }
+            },
 
 /*
             localhost: {
