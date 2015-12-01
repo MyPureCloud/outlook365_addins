@@ -16,7 +16,7 @@ var userService = (function(){
             phone: phone,
             department: department,
             title: title,
-            status: status.replace(/ /g,''),
+            status: status ? status.replace(/ /g,'') : "",
             id: id
 
         };
@@ -35,12 +35,12 @@ var userService = (function(){
                         var name = user.name;
                         var image = "/images/unknownuser48.png";
                         var largeImage = "/images/unknownuser96.png";
-
+/*
                         if(user.userImages !== null && user.userImages.length >= 2){
                             image = user.userImages[0].imageUri;
                             largeImage = user.userImages[1].imageUri;
                         }
-
+*/
                         var phone = user.phoneNumber;
                         var department = user.department;
                         var status= user.status.name;

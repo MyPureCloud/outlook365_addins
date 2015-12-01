@@ -42,9 +42,11 @@ function authorizeAndStart(){
         if(environment == "12920360ngrok"){
             environment = "localhost";
         }
-
+        if(environment == "office365addinv2herokuapp"){
+            environment = inindca;
+        }
         var environments = {
-            inindca: {
+            inindca_forreal: {
                 clientId: "80718713-aa6c-4f7d-bf25-69d9c5e9df2a",
                 callback: "https://apps.inindca.com/github-outlook365addins/auth.html"
             },
@@ -52,13 +54,18 @@ function authorizeAndStart(){
                 clientId: "c08fd793-f867-4fcc-bf8c-4f92b294f53c",
                 callback: "https://localhost:8080/auth.html"
             },
+            inindca:{ 
+                clientId: "5c0964d9-2cd0-4fe2-9f36-748da1abe701",
+                callback: "https://office365addinv2.herokuapp.com/auth.html"
+            }
+
 /*
             localhost: {
                 clientId: "c08fd793-f867-4fcc-bf8c-4f92b294f53c",
                 callback: "https://localhost:8080/auth.html"
             },*/
             localhost: {
-                callback:"https://12920360.ngrok.com/auth.html",
+                callback: "https://12920360.ngrok.com/github-outlook365addins/auth.html",// "https://12920360.ngrok.com/auth.html",
                 clientId: "cfa84537-8988-4f7e-af7c-ef48625f1000"
 
             }
@@ -77,7 +84,7 @@ function authorizeAndStart(){
 
         if(environment === "localhost"){
             purecloudEnvironment = "inindca.com";
-            app = window.location.pathname.match(/[a-zA-Z]*\.html/)[0];
+            app = "github-outlook365addins/" + window.location.pathname.match(/[a-zA-Z]*\.html/)[0];
         }
 
     } catch (e) {
