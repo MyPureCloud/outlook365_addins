@@ -14,7 +14,8 @@ var logger = function(req, res, next) {
 
 app.use(bodyParser.json());
 app.use(logger);
-app.use(express.static(__dirname + "/localBuild"));
+//app.use(express.static(__dirname + "/localBuild"));
+app.use(express.static(__dirname + "/src/web"));
 
 app.use('/github-outlook365addins', express.static(__dirname + "/src/web"));
 
