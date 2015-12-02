@@ -1,7 +1,6 @@
 /*global Office:false */
 /*global Mustache:false */
 /*global PureCloud:false */
-/*global loadHelpDialog:false */
 /*global directorySettings:false */
 /*global traceService:false */
 /*exported startup */

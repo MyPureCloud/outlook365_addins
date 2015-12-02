@@ -44,7 +44,7 @@ function createAnalytics(){
 };
 
 function createCdn(){
-    fs.writeFileSync("src/web/scripts/cdn.js",  "var CDN_URL= '"+ CDN_URL +"'");
+    fs.writeFileSync("src/web/scripts/cdn.js",  "/*exported CDN_URL */ var CDN_URL= '"+ CDN_URL +"';");
 };
 
 gulp.task('manifest', function () {

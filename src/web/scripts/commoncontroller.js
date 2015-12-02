@@ -1,6 +1,7 @@
 /*global Office:false */
 /*global PureCloud:false */
 /*global startup:false */
+/*global loadHelpDialog:false */
 /*exported traceService */
 /*exported getFileSizeString */
 /*exported inIframe */
@@ -77,16 +78,16 @@ function authorizeAndStart(){
             app = "github-outlook365addins/" + window.location.pathname.match(/[a-zA-Z]*\.html/)[0];
         }
 
+        if(!PureCloud.hasAuthorizationToken()){
+            PureCloud.authorize(clientId, callback, app, purecloudEnvironment);
+            return;
+        }else{
+            traceService.debug("authorize token present, setting environment");
+            PureCloud.setEnvironment(purecloudEnvironment);
+        }
+
     } catch (e) {
         traceService.error(JSON.stringify(e));
-    }
-
-    if(!PureCloud.hasAuthorizationToken()){
-        PureCloud.authorize(clientId, callback, app, purecloudEnvironment);
-        return;
-    }else{
-        traceService.debug("authorize token present, setting environment");
-        PureCloud.setEnvironment(purecloudEnvironment);
     }
 
     $('#settings').hide();
