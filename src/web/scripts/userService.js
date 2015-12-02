@@ -53,7 +53,7 @@ var userService = (function(){
                         var image = cdnUrl + "images/unknownuser48.png";
                         var largeImage = cdnUrl + "images/unknownuser96.png";
 
-                        if(user.userImages !== null && user.userImages.length >= 2 && !navigator.userAgent.match(OUTLOOK_FOR_MAC_USER_AGENT )){
+                        if(user.userImages !== null && user.userImages.length >= 2 && navigator.userAgent.match(OUTLOOK_FOR_MAC_USER_AGENT ) != null){
                             image = user.userImages[0].imageUri;
                             largeImage = user.userImages[1].imageUri;
                         }
