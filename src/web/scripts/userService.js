@@ -3,12 +3,10 @@
 /*exported userService */
 /*exported startup */
 /* jshint -W097 */
-
 'use strict';
 
 var userService = (function(){
-    var CDN_URL = '/';// (typeof CDN_URL === 'undefined') ? '/' : CDN_URL;
-    var OUTLOOK_FOR_MAC_USER_AGENT = /^Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit\/\d\d\d.\d+.\d+ (KHTML, like Gecko)$/
+    var OUTLOOK_FOR_MAC_USER_AGENT = /^Mozilla\/5\.0 \(Macintosh; Intel Mac OS X 10_11_1\) AppleWebKit\/\d\d\d.\d+.\d+ \(KHTML, like Gecko\)$/
 
     function createUser(email, name, pictureUrl, largepictureUrl, phone, department, title, status, id) {
         return {
@@ -27,6 +25,8 @@ var userService = (function(){
 
     return {
         getUser: function (email, callback) {
+            var CDN_URL = (typeof CDN_URL === 'undefined') ? '/' : CDN_URL;
+            
             traceService.debug("get user " + JSON.stringify(email));
 
             if(callback !== null){
@@ -39,7 +39,7 @@ var userService = (function(){
                         var image = CDN_URL + "images/unknownuser48.png";
                         var largeImage = CDN_URL + "images/unknownuser96.png";
 
-                        if(user.userImages !== null && user.userImages.length >= 2){// && !navigator.userAgent.match(OUTLOOK_FOR_MAC_USER_AGENT )){
+                        if(user.userImages !== null && user.userImages.length >= 2 && !navigator.userAgent.match(OUTLOOK_FOR_MAC_USER_AGENT )){
                             image = user.userImages[0].imageUri;
                             largeImage = user.userImages[1].imageUri;
                         }

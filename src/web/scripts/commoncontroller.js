@@ -40,6 +40,8 @@ function authorizeAndStart(){
         var environment = window.location.hostname.replace(/(apps|com|\.)/g,"");
         traceService.debug("environment " + environment);
 
+        //environment = "localhost";
+
         var environments = {
             inindca: {
                 clientId: "80718713-aa6c-4f7d-bf25-69d9c5e9df2a",
@@ -53,6 +55,10 @@ function authorizeAndStart(){
                 clientId: "c08fd793-f867-4fcc-bf8c-4f92b294f53c",
                 callback: "https://localhost:8080/auth.html"
             }
+            /*localhost:{
+                clientId: "cfa84537-8988-4f7e-af7c-ef48625f1000",
+                callback : "https://12920360.ngrok.com/auth.html"
+            }*/
         };
 
         if(environments[environment] !== null){
