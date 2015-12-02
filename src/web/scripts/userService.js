@@ -39,7 +39,7 @@ var userService = (function(){
 
     return {
         getUser: function (email, callback) {
-            var CDN_URL = (typeof CDN_URL === 'undefined') ? '/' : CDN_URL;
+            var cdnUrl = (typeof cdnUrl === 'undefined') ? '/' : cdnUrl;
 
             traceService.debug("get user " + JSON.stringify(email));
 
@@ -50,8 +50,8 @@ var userService = (function(){
 
                         var user = data.entities[0];
                         var name = user.name;
-                        var image = CDN_URL + "images/unknownuser48.png";
-                        var largeImage = CDN_URL + "images/unknownuser96.png";
+                        var image = cdnUrl + "images/unknownuser48.png";
+                        var largeImage = cdnUrl + "images/unknownuser96.png";
 
                         if(user.userImages !== null && user.userImages.length >= 2 && !navigator.userAgent.match(OUTLOOK_FOR_MAC_USER_AGENT )){
                             image = user.userImages[0].imageUri;
