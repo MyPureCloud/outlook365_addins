@@ -25,7 +25,7 @@ var userService = (function(){
 
     return {
         getUser: function (email, callback) {
-            var CDN_URL = '/';//(typeof CDN_URL === 'undefined') ? '/' : CDN_URL;
+            var CDN_URL = (typeof CDN_URL === 'undefined') ? '/' : CDN_URL;
 
             traceService.debug("get user " + JSON.stringify(email));
 
@@ -41,7 +41,7 @@ var userService = (function(){
 
                         traceService.log(!navigator.userAgent.match(OUTLOOK_FOR_MAC_USER_AGENT ));
 
-                        if(user.userImages !== null && user.userImages.length >= 2){// && !navigator.userAgent.match(OUTLOOK_FOR_MAC_USER_AGENT )){
+                        if(user.userImages !== null && user.userImages.length >= 2 && !navigator.userAgent.match(OUTLOOK_FOR_MAC_USER_AGENT )){
                             image = user.userImages[0].imageUri;
                             largeImage = user.userImages[1].imageUri;
                         }
