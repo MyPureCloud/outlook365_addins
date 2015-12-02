@@ -53,7 +53,7 @@ function authorizeAndStart(){
                 callback: "https://localhost:8080/auth.html"
             },
             localhost: {
-                clientId: "c08fd793-f867-4fcc-bf8c-4f92b294f53c",
+                clientId: "ba83addc-4c7d-4f93-8faa-2635de89ad5a",
                 callback: "https://localhost:8080/auth.html"
             }
             /*localhost:{

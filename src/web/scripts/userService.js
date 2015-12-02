@@ -7,6 +7,7 @@
 
 var userService = (function(){
     var OUTLOOK_FOR_MAC_USER_AGENT = /^Mozilla\/5\.0 \(Macintosh; Intel Mac OS X 10_11_1\) AppleWebKit\/\d\d\d.\d+.\d+ \(KHTML, like Gecko\)$/;
+    var cdnUrl = '/'
 
     function createUser(email, name, pictureUrl, largepictureUrl, phone, department, title, status, id) {
         return {
@@ -23,6 +24,19 @@ var userService = (function(){
         };
     }
 
+    function isInt(n){
+        return Number(n) === n && n % 1 === 0;
+    }
+
+    $.get(location.origin + "/github-outlook365addins/manifest.json").done(function(data) {
+        var buildNumber = data.buildNumber;
+        traceService.log(buildNumber);
+
+        if(isInt(buildNumber)){
+            cdnUrl = "https://cdn.rawgit.com/MyPureCloud/outlook365addins/"+ buildNumber +"/src/web/";
+        }
+    });
+
     return {
         getUser: function (email, callback) {
             var CDN_URL = (typeof CDN_URL === 'undefined') ? '/' : CDN_URL;
@@ -38,8 +52,6 @@ var userService = (function(){
                         var name = user.name;
                         var image = CDN_URL + "images/unknownuser48.png";
                         var largeImage = CDN_URL + "images/unknownuser96.png";
-
-                        traceService.log(!navigator.userAgent.match(OUTLOOK_FOR_MAC_USER_AGENT ));
 
                         if(user.userImages !== null && user.userImages.length >= 2 && !navigator.userAgent.match(OUTLOOK_FOR_MAC_USER_AGENT )){
                             image = user.userImages[0].imageUri;

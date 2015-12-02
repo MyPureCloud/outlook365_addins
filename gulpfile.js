@@ -43,10 +43,6 @@ function createAnalytics(){
     fs.writeFileSync("src/web/scripts/analytics.js", file);
 };
 
-function createCdn(){
-    fs.writeFileSync("src/web/scripts/cdn.js",  "/*exported CDN_URL */ var CDN_URL= '"+ CDN_URL +"';");
-};
-
 gulp.task('manifest', function () {
    return gulp.src("src/web/*.html")
        .pipe(filenames())
@@ -112,8 +108,7 @@ gulp.task('lambda', function() {
 
 gulp.task('scripts', function() {
     createAnalytics();
-    createCdn();
-
+    
     return gulp.src('src/web/scripts/**/*.js')
         //.pipe(jshint({ es5: false }))
         //.pipe(jshint.reporter('default'))

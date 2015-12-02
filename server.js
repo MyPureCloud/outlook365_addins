@@ -42,9 +42,8 @@ var sslOptions = {
     rejectUnauthorized: false
 };
 
-
 var httpServer = http.createServer(app);
-//httpServer = https.createServer(sslOptions, app);
+httpServer = https.createServer(sslOptions, app);
 
 var port = process.env.PORT || 8080;
 console.log("starting on " + port);
