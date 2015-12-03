@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OfficeApp xmlns=
+  "http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:type="MailApp">
+
+  <Id>075485d8-8def-11e5-aeaa-600308a98970</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Interactive Intelligence Open Source</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="OSX Test" />
+  <Description DefaultValue="View user information from PureCloud Directory.  This application is open source and is provided as-is."/>
+
+  <IconUrl DefaultValue=
+    "https://apps.inindca.com/github-outlook365addins/purecloud.jpg"/>
+    <AppDomains>
+      <AppDomain>https://login.inindca.com</AppDomain>
+    </AppDomains>
+  <Hosts>
+    <Host Name="Mailbox" />
+  </Hosts>
+  <Requirements>
+    <Sets DefaultMinVersion="1.1">
+      <Set Name="Mailbox" />
+    </Sets>
+  </Requirements>
+
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <!-- Change the following line to specify     -->
+        <!-- the web server that hosts the HTML file. -->
+        <SourceLocation DefaultValue="https://apps.inindca.com/github-outlook365addins/osxtest.html"/>
+        <RequestedHeight>250</RequestedHeight>
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
+
+  <Permissions>ReadItem</Permissions>
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read" />
+    <Rule xsi:type="ItemIs" ItemType="Appointment" FormType="Read" />
+  </Rule>
+</OfficeApp>
