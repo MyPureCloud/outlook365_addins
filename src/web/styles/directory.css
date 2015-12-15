@@ -100,6 +100,24 @@
     padding-top: 2px;
 }
 
-#detailPhoneLink{
+.contactButton{
+    color:#fff;
+    border-radius:50%;
+    background:#55a9c6;
+    height:32px;
+    width:32px;
     cursor:pointer;
+    margin-top:6px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.contactButton>a{
+    height:20px;
+    width:20px;
+    color:#fff;
+}
+
+.contactButton i{
+    padding-top:9px;
 }
