@@ -48,7 +48,7 @@ var userService = (function(){
                     if(data.entities.length === 1){
 
                         var user = data.entities[0];
-                        var name = user.name;
+                        var name = user.name.replace(/ /g,'');
                         var image = cdnUrl + "images/unknownuser48.png";
                         var largeImage = cdnUrl + "images/unknownuser96.png";
 

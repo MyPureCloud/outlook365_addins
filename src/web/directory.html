@@ -48,8 +48,8 @@
                 </div>
 
 
-                <div id='people' style="float:left;max-height:250px">
-                    <div class="row ">
+                <div id='people' style="float:left;max-height:250px;overflow-y:scroll">
+                    <div class="row2 ">
 
                         <!--                        <div class='col-md-1'>-->
                         <label id='fromLabel' style="display:none" class="align-top">From</label>
@@ -57,7 +57,7 @@
                         <div id="from" ></div>
                     </div>
 
-                    <div class="row ">
+                    <div class="row2 ">
                         <!--                        <div class='col-md-1'>-->
                         <label id='toLabel' style="display:none" class="align-top">To</label>
                         <!--</div>-->
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row ">
+                    <div class="row2 ">
                         <!--<div class='col-md-1'>-->
                         <label id='ccLabel' style="display:none" class="align-top">Cc</label>
                         <!--</div>-->
@@ -101,7 +101,6 @@
             <div data-id='{{id}}' class="personDetailsField status{{status}}" id="detailImageContainer">
                 <img class="entity-image" id="largeImage" src="{{picture}}"  />
             </div>
-            <br />
             <div class="personDetailsField">
                 <label id="detailName" class='name'>{{name}}</label>
             </div>
