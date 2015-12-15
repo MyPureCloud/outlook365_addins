@@ -50,7 +50,7 @@ function authorizeAndStart(){
             },
             ininsca: {
                 clientId: "c08fd793-f867-4fcc-bf8c-4f92b294f53c",
-                callback: "https://localhost:8080/auth.html"
+                callback: "https://apps.ininsca.com/github-outlook365addins/auth.html"
             },
             localhost: {
                 clientId: "ba83addc-4c7d-4f93-8faa-2635de89ad5a",

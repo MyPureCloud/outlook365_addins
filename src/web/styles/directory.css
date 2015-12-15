@@ -41,27 +41,27 @@
     color: #4ea2df;
 }
 
-.statusAvailable img{
+.statusAVAILABLE img{
     border: 2px solid #7d2!important
 }
 
-.statusBusy img {
+.statusBUSY img {
     border: 2px solid #c00!important
 }
 
-.statusAway img {
+.statusAWAY img {
     border: 2px solid #fb3!important
 }
 
-.statusOffline img {
+.statusOFFLINE img {
     border: 2px solid #666!important
 }
 
-.statusOutOfOffice img{
+.statusOUT_OF_OFFICE img{
     border: 2px solid #ff1dce!important
 }
 
-.statusOnQueue img{
+.statusON_QUEUE img{
     border: 2px solid #52cef8!important
 }
 

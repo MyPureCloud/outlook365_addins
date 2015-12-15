@@ -61,7 +61,7 @@ function loadDirectoryInfo() {
         var subscriptionList = [];
 
         for(var index=0; index < userIds.length; index++){
-            subscriptionList.push ({"id": "users."+ userIds[index] +".status"});
+            subscriptionList.push ({"id": "users."+ userIds[index] +".primarypresence"});
         }
         PureCloud.notifications.channels.subscriptions.addSubscription(channelId, subscriptionList);
 
@@ -114,9 +114,9 @@ function startup(){
         webSocket.onmessage = function(socketMessage) {
             var message =  JSON.parse(socketMessage.data);
 
-            if(message.topicName.match(/users.*status/)){
-                var userId =message.eventBody.id;
-                var newStatus = message.eventBody.status.name.replace(/ /g,'');
+            if(message.topicName.match(/users.*primarypresence/)){
+                var userId =message.topicName.replace('users.','').replace('.primarypresence', '');
+                var newStatus = message.eventBody.presenceDefinition.systemPresence;
 
                 var spanSelector = "span[data-id='"+ userId +"']";
                 var imageSelector = "div[data-id='"+ userId +"']," + spanSelector;

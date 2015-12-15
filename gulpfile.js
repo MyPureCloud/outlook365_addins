@@ -122,7 +122,6 @@ gulp.task('clean', function() {
 });
 
 gulp.task('html', function() {
-
   return gulp.src('src/web/**/*.html')
       .pipe(replace(/(src|href){1}=(['"])\/(?!cdn|analytics)/g, '$1=$2' + CDN_URL))
     .pipe(gulp.dest('localBuild'));

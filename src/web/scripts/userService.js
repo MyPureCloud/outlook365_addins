@@ -8,6 +8,7 @@
 var userService = (function(){
     var OUTLOOK_FOR_MAC_USER_AGENT = /^Mozilla\/5\.0 \(Macintosh; Intel Mac OS X 10_11_1\) AppleWebKit\/\d\d\d.\d+.\d+ \(KHTML, like Gecko\)$/;
     var cdnUrl = '/'
+    var presenceDefinitions = {};
 
     function createUser(email, name, pictureUrl, largepictureUrl, phone, department, title, status, id) {
         return {
@@ -39,8 +40,6 @@ var userService = (function(){
 
     return {
         getUser: function (email, callback) {
-            var cdnUrl = (typeof cdnUrl === 'undefined') ? '/' : cdnUrl;
-
             traceService.debug("get user " + JSON.stringify(email));
 
             if(callback !== null){
@@ -53,17 +52,38 @@ var userService = (function(){
                         var image = cdnUrl + "images/unknownuser48.png";
                         var largeImage = cdnUrl + "images/unknownuser96.png";
 
-                        if(user.userImages !== null && user.userImages.length >= 2 && navigator.userAgent.match(OUTLOOK_FOR_MAC_USER_AGENT ) != null){
+                        if(user.userImages !== null && user.userImages.length >= 2){
                             image = user.userImages[0].imageUri;
                             largeImage = user.userImages[1].imageUri;
                         }
 
                         var phone = user.phoneNumber;
                         var department = user.department;
-                        var status= user.status.name;
+
                         var title = user.title;
                         var id = user.id;
-                        callback(createUser( email.emailAddress, name, image, largeImage, phone, department, title, status, id));
+
+                        PureCloud.users.presences.getUserpresence(id,"PURECLOUD").done(function (presenceData){
+                            var status= '';
+
+                            if(presenceDefinitions[presenceData.presenceDefinition.id]){
+                                status = presenceDefinitions[presenceData.presenceDefinition.id];
+                                callback(createUser( email.emailAddress, name, image, largeImage, phone, department, title, status, id));
+                            }else{
+                                PureCloud.presencedefinitions.getOrganizationpresence(presenceData.presenceDefinition.id).done(function(presenceDefinition){
+                                    status = presenceDefinition.systemPresence;
+                                    presenceDefinitions[presenceData.presenceDefinition.id] = status;
+
+                                    callback(createUser( email.emailAddress, name, image, largeImage, phone, department, title, status, id));
+                                }).error(function(){
+                                    callback(createUser( email.emailAddress, name, image, largeImage, phone, department, title, '', id));
+                                });
+                            }
+
+                        }).error(function(){
+                            callback(createUser( email.emailAddress, name, image, largeImage, phone, department, title, '', id));
+                        });
+
                     }else{
                         callback(createUser(email.emailAddress, email.displayName));
                     }
