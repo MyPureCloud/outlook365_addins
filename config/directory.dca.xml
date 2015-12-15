@@ -31,7 +31,7 @@
         <!-- Change the following line to specify     -->
         <!-- the web server that hosts the HTML file. -->
         <SourceLocation DefaultValue="https://apps.inindca.com/github-outlook365addins/directory.html"/>
-        <RequestedHeight>250</RequestedHeight>
+        <RequestedHeight>300</RequestedHeight>
       </DesktopSettings>
     </Form>
   </FormSettings>

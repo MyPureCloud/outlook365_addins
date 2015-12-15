@@ -11,9 +11,8 @@ var helpDialog =
 '    <br/>'+
 '    <br/>'+
 '    <br/>'+
-'    For help or questions, see the PureCloud chat room "Open Source"'+
+'    For help or questions, see the PureCloud chat room "Developer Evangelists"'+
 '    <br/>'+
-'    User images not currently supported by Outlook for Mac'+
 '    <br/>'+
 '    User Agent: <div id="useragent"></div>'+
 '</div>';

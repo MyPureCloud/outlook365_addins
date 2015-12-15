@@ -108,6 +108,8 @@ function authorizeAndStart(){
     loadHelpDialog();
     $("#useragent").html( navigator.userAgent);
 
+    $('body').css('background-color', '#fff');
+
 }
 
 Office.initialize = function () {
