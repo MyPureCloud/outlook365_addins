@@ -140,4 +140,5 @@ function contactClicked(element){
     }
 
     $('#people').addClass('paddedLists');
+    $('#people').css("width", $(body).width - 200)
 }
