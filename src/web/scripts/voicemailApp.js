@@ -47,8 +47,8 @@ function getSessionAndVoicemail(){
 
             $.ajax({
                 method: 'POST',
-                //url: 'https://y3cazhlrz9.execute-api.us-east-1.amazonaws.com/beta/exchangeTest',// '/lambda',
-                url: '/lambda',
+                url: 'https://xjkyaa3y5a.execute-api.us-east-1.amazonaws.com/prod/outlook365_GetEmailBody',
+                //url: '/lambda',
                 headers: {
                     'Content-Type': 'application/json'
                 },
