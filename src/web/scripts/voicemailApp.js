@@ -59,7 +59,7 @@ function getSessionAndVoicemail(){
                     setError("Unable to get recording url" , data);
                 }
 
-                function showRecording(templateData){
+                function showRecording(templateData, phoneNumber, contactId){
                     traceService.log("got recording, showing player");
 
                     $("#content-main").show();
@@ -69,6 +69,10 @@ function getSessionAndVoicemail(){
                     var template = $('#recordingTemplate').html();
                     var html = Mustache.to_html(template, templateData);
                     $("#recordingContent").html(html);
+
+                    $('#detailPhoneLink').click(function(){
+                        PureCloud.conversations.createConversation(phoneNumber, null, null, contactId);
+                    });
                 }
 
                 PureCloud.voicemail.messages.getVoicemailMessages().done(function (data) {
@@ -128,12 +132,12 @@ function getSessionAndVoicemail(){
                                             }).then(function(){
                                                 statusServiceInstance.getUserStatus(message.callerUser.id, function(status){
                                                     templateData.fromStatus = status;
-                                                    showRecording(templateData);
+                                                    showRecording(templateData, null, message.callerUser.id);
                                                 });
                                             });
                                     }
 
-                                    showRecording(templateData);
+                                    showRecording(templateData, message.callerAddress, null);
                                 });
 
                             return;

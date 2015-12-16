@@ -44,7 +44,14 @@ var statusService = (function(){
                     status = presenceDefinitions[presenceData.presenceDefinition.id];
                     callback(status);
                 }else{
-                    callback('');
+                    PureCloud.presencedefinitions.getOrganizationpresence(presenceData.presenceDefinition.id).done(function(presenceDefinition){
+                        status = presenceDefinition.systemPresence;
+                        presenceDefinitions[presenceData.presenceDefinition.id] = status;
+
+                        callback(status);
+                    }).error(function(){
+                        callback('');
+                    });
                 }
 
             }).error(function(){

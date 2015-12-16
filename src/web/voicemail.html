@@ -96,7 +96,30 @@
 
         {{/fromId}}
         {{^fromId}}
-        <img src='/images/unknownuser96.png'  class='entity-image entity-image-large'></img>
+
+        <div>
+            <div class='contactData pull-left'>
+                <div id='fromImage' >
+                        <img src='/images/unknownuser96.png'  class='entity-image entity-image-large'></img>
+                </div>
+                <div class='contactData ' style='width:104px'>
+                    <div class='contactButton' data-toggle="tooltip" data-placement="top" title="Call {{fromNumber}}">
+                        <a id="detailPhoneLink" data-toggle="tooltip" data-placement="top" title="Call {{fromNumber}}">
+                            <i class="fa fa-phone"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class='contactData pull-left' style='margin-top:10px'>
+
+                <div class='pull-left'>
+                    <div>
+                        {{fromNumber}}
+                    </div>
+                </div>
+            </div>
+        </div>
         {{/fromId}}
 
         <audio id="audioPlayer" src="{{voicemailUri}}" controls preload></audio>
