@@ -95,7 +95,7 @@ function loadDirectoryInfo() {
 
 function startup(){
 
-    settings = directorySettings();
+    settings = appSettings();
 
     traceService.log("starting");
 

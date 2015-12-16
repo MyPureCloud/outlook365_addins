@@ -62,6 +62,9 @@ var PureCloud =  (function () {
     self.authorize = function(clientId, redirectUrl, state, environment){
         var _doneCallback = function(){console.error("callback not set");};
 
+        environment = environment || _environment;
+        _host = 'api.'+ environment;
+
         var defer = {
             done: function(callback){
                 _doneCallback = callback;
@@ -79,8 +82,6 @@ var PureCloud =  (function () {
         }
 
         function authRedirect(){
-            environment = environment || _environment;
-            _host = 'api.'+ environment;
             _auth_url = 'https://login.'+environment;
 
             var url = _auth_url + '/authorize' +

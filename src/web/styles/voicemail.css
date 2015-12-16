@@ -1,9 +1,14 @@
 #audioPlayer{
     width: 96%;
-    margin-top: 10px;
-    margin-left:2%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+
 }
 
+#content-main{
+    padding-left:2%;
+
+}
 
 #loadingImage {
     height: 15px;
@@ -16,11 +21,10 @@
     background-image:url('../images/ajax-loader.gif')
 }
 
-#loginForm .form-group{
-    float:left;
-    margin-left:10px;
-}
-
 label{
     display:none;
+}
+
+body{
+    margin-top:15px;
 }

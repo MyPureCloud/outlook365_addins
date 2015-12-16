@@ -78,38 +78,35 @@ function authorizeAndStart(){
             app = "github-outlook365addins/" + window.location.pathname.match(/[a-zA-Z]*\.html/)[0];
         }
 
-        if(!PureCloud.hasAuthorizationToken()){
-            PureCloud.authorize(clientId, callback, app, purecloudEnvironment);
-            return;
-        }else{
+        PureCloud.authorize(clientId, callback, app, purecloudEnvironment).done(function(){
             traceService.debug("authorize token present, setting environment");
             PureCloud.setEnvironment(purecloudEnvironment);
-        }
+
+            $('#settings').hide();
+            $('#settingsButton').click(function(){
+                $('#settings').show();
+            });
+
+            $(".close").click(function(){
+                $(this).parent().hide();
+            });
+
+            $('#logoffButton').click(function(){
+                PureCloud.logout();
+            });
+
+            startup();
+
+            loadHelpDialog();
+            $("#useragent").html( navigator.userAgent);
+
+            $('body').css('background-color', '#fff');
+        });
+
 
     } catch (e) {
         traceService.error(JSON.stringify(e));
     }
-
-    $('#settings').hide();
-    $('#settingsButton').click(function(){
-        $('#settings').show();
-    });
-
-    $(".close").click(function(){
-        $(this).parent().hide();
-    });
-
-    $('#logoffButton').click(function(){
-        PureCloud.logout();
-    });
-
-    startup();
-
-    loadHelpDialog();
-    $("#useragent").html( navigator.userAgent);
-
-    $('body').css('background-color', '#fff');
-
 }
 
 Office.initialize = function () {

@@ -9,17 +9,6 @@
 }
 
 
-#loginForm{
-    margin:10px;
-}
-
-.entity-image{
-    border-radius:50%;
-    margin:3px 4px;
-    max-height:48px;
-    max-width:48px;
-}
-
 #detailTitle{
     text-align: center;
 }
@@ -41,29 +30,6 @@
     color: #4ea2df;
 }
 
-.statusAVAILABLE img{
-    border: 2px solid #7d2!important
-}
-
-.statusBUSY img {
-    border: 2px solid #c00!important
-}
-
-.statusAWAY img {
-    border: 2px solid #fb3!important
-}
-
-.statusOFFLINE img {
-    border: 2px solid #666!important
-}
-
-.statusOUT_OF_OFFICE img{
-    border: 2px solid #ff1dce!important
-}
-
-.statusON_QUEUE img{
-    border: 2px solid #52cef8!important
-}
 
 .align-top{
     vertical-align:top;
@@ -98,26 +64,4 @@
     border-top: 1px solid #E1E1E1;
     margin-top: 2px;
     padding-top: 2px;
-}
-
-.contactButton{
-    color:#fff;
-    border-radius:50%;
-    background:#55a9c6;
-    height:32px;
-    width:32px;
-    cursor:pointer;
-    margin-top:6px;
-    margin-left:auto;
-    margin-right:auto;
-}
-
-.contactButton>a{
-    height:20px;
-    width:20px;
-    color:#fff;
-}
-
-.contactButton i{
-    padding-top:9px;
 }
