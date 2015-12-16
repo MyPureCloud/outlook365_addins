@@ -31,3 +31,4 @@ outlook365addins
 /src/web/scripts/cdn.js
 /dist
 /src/web/bower_components
+lambda.js

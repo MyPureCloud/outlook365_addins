@@ -16,7 +16,7 @@
   "dependencies":{
     "body-parser": "1.14.1",
     "express": "^4.13.1",
-    "request": "*"
+    "request": "2.65.0"
 },
   "devDependencies": {
     "bower":"*",
@@ -31,6 +31,7 @@
     "gulp-rename": "*",
     "gulp-replace": "*",
     "gulp-rimraf": "^0.1.1",
+    "mkdirp" :"*",
     "proxyquire": "^1.7.3",
     "shelljs": "*"
   }

@@ -15,6 +15,7 @@ require('shelljs/global');
 var jasmine = require('gulp-jasmine');
 var filenames = require("gulp-filenames");
 var fs = require('fs');
+var mkdirp = require('mkdirp');
 
 var CDN_URL = process.env.CDN_URL || '/';
 
@@ -89,13 +90,15 @@ gulp.task('bower', function() {
 });
 
 gulp.task('lambda', function() {
-    gulp.src('lambda.zip', { read: false })
-        .pipe(rimraf());
+    //gulp.src('lambda.zip', { read: false })
+    //    .pipe(rimraf());
 
-    exec('zip dist/lambda.zip node_modules/request/*', {silent:true});
-    exec('zip -j dist/lambda.zip src/lambda/lambda.js', {silent:true});
+    exec('zip -r lambda.zip node_modules/request/', {silent:true});
+    exec('zip -j lambda.zip src/lambda/lambda.js', {silent:true});
 
-    return;
+    //return gulp.src('lambda.zip', { read: false })
+    //    .pipe(gulp.dest('./dist/lambda.zip'));
+
 });
 
 gulp.task('scripts', function() {
@@ -133,4 +136,4 @@ gulp.task('watch', function() {
     gulp.watch('./src/web/**/*.*', ['default']);
 });
 
-gulp.task('default', ['clean', 'bower', 'scripts','images', 'css','html', 'manifest']);
+gulp.task('default', ['clean', 'bower', 'scripts','images', 'css','html', 'manifest', 'test', 'lambda']);
