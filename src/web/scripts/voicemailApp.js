@@ -52,7 +52,7 @@ function getSessionAndVoicemail(){
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                timeout: 2000,
+                timeout: 5000,
                 data: JSON.stringify(attachmentData)
             }).success(function (data) {
                 traceService.log(data);
@@ -80,37 +80,18 @@ function getSessionAndVoicemail(){
                     });
                 }
 
-                PureCloud.voicemail.messages.getVoicemailMessages().done(function (data) {
+                traceService.log('message: ' + data.phone + ' ' + data.time + ' ' + data.duration );
+
+                function handleVoiceMailPage(data){
                     for(var i=0; i< data.entities.length; i++){
                         var message = data.entities[i];
-                        traceService.log('message: ' + message.AudioRecordingDurationSeconds + ' ' + message.CallerAddress + ' ' + message.CreatedDate );
+                        traceService.log('message: ' + message.audioRecordingDurationSeconds + ' ' + message.callerAddress.replace(/\+/, '') + ' ' + message.createdDate.replace(/\.\d\d\dZ/, '') );
 
-                        if(true){
-                            /**** Example voicemail message
+                        if(message.audioRecordingDurationSeconds == data.duration &&
+                            message.callerAddress.replace(/\+/, '') == data.phone &&
+                            message.createdDate.replace(/\.\d\d\dZ/, '') == data.time){
 
-                            {
-                                  "id": "e2d58e6a-42f1-4db4-96df-e9821810b06d",
-                                  "conversation": {
-                                    "id": "88851e0e-4c6d-44ab-90c1-c00ee7c93056",
-                                    "participants": [],
-                                    "selfUri": "https://public-api.us-east-1.inindca.com/api/v1/conversations/88851e0e-4c6d-44ab-90c1-c00ee7c93056"
-                                  },
-                                  "read": false,
-                                  "audioRecordingDurationSeconds": 4,
-                                  "audioRecordingSizeBytes": 6413,
-                                  "createdDate": "2015-12-15T21:50:46.734Z",
-                                  "modifiedDate": "2015-12-15T21:50:46.734Z",
-                                  "callerAddress": "+13177158637",
-                                  "callerName": "Glinski, Kevin",
-                                  "callerUser": {
-                                    "id": "f8ca529b-4fcb-4196-a34e-4ae6f7d1c974",
-                                    "userImages": [],
-                                    "selfUri": "https://public-api.us-east-1.inindca.com/api/v1/users/f8ca529b-4fcb-4196-a34e-4ae6f7d1c974"
-                                  },
-                                  "selfUri": "https://public-api.us-east-1.inindca.com/api/v1/voicemail/messages/e2d58e6a-42f1-4db4-96df-e9821810b06d"
-                                }
 
-                            *****/
                             var templateData = {
                                 fromName: message.callerName,
                                 fromNumber: message.callerAddress,
@@ -146,9 +127,18 @@ function getSessionAndVoicemail(){
 
                             return;
                         }
-                        setError("Unable to find voicemail messages", {});
+
+                        if(data.nextUri == null){
+
+                            setError("Unable to find voicemail messages", {});
+                        }
+
+                        PureCloud.get(data.nextUri).done(handleVoiceMailPage);
+
                     }
-                }).error(function(data){
+                }
+
+                PureCloud.voicemail.messages.getVoicemailMessages().done(handleVoiceMailPage).error(function(data){
                     setError("Unable to get voicemail messages", data);
                 });
 
