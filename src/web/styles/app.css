@@ -50,8 +50,9 @@
 
 }
 
-#signIn{
-    margin-left:10px;
+
+.nofloat{
+    float:none;
 }
 
 .btn-pc{

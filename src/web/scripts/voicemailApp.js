@@ -123,7 +123,6 @@ function getSessionAndVoicemail(){
                                 .then(function(){
                                     if(message.callerUser){
                                         statusServiceInstance.subscribeToUserStatus([message.callerUser.id], handleStatusChanged);
-
                                         templateData.fromId = message.callerUser.id;
 
                                         PureCloud.get(message.callerUser.selfUri)

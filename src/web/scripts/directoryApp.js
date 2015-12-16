@@ -13,6 +13,7 @@ var userService = userService();
 var settings = null;
 var webSocket = null;
 var channelId = null;
+var statusServiceInstance = null;
 
 function generateTemplate(personData){
     var template = $('#personTpl').html();
@@ -42,6 +43,7 @@ function loadDirectoryInfo() {
     }
 
     var contactCount = 1 + to.length + cc.length;
+    statusServiceInstance.setContactCount(contactCount);
 
     traceService.debug("from : " + JSON.stringify(from));
 
@@ -50,28 +52,26 @@ function loadDirectoryInfo() {
         var person = generateTemplate(user);
         $("#from").html(person);
         $("#fromLabel").show();
-        subscribeToUserStatus(userIds);
+        statusServiceInstance.subscribeToUserStatus(userIds, handleStatusChanged);
     });
 
-    function subscribeToUserStatus(userIds){
-        if(contactCount > userIds.length){
-            return;
-        }
+    function handleStatusChanged(userId, newStatus){
+        var spanSelector = "span[data-id='"+ userId +"']";
+        var imageSelector = "div[data-id='"+ userId +"']," + spanSelector;
 
-        var subscriptionList = [];
+        $(imageSelector).removeClass (function (index, css) {
+            return (css.match (/status[A-Za-z]*/) || []).join(' ');
+        });
 
-        for(var index=0; index < userIds.length; index++){
-            subscriptionList.push ({"id": "users."+ userIds[index] +".primarypresence"});
-        }
-        PureCloud.notifications.channels.subscriptions.addSubscription(channelId, subscriptionList);
-
+        $(imageSelector).addClass("status" + newStatus);
+        $(spanSelector).attr('data-status', newStatus);
     }
 
     traceService.debug(to);
 
     function processToUser(user){
         userIds.push(user.id);
-        subscribeToUserStatus(userIds);
+        statusServiceInstance.subscribeToUserStatus(userIds, handleStatusChanged);
         $("#to").html($("#to").html() + generateTemplate(user));
         $("#toLabel").show();
     }
@@ -85,7 +85,7 @@ function loadDirectoryInfo() {
         $("#cc").html($("#cc").html()  + generateTemplate(user));
         $("#ccLabel").show();
         userIds.push(user.id);
-        subscribeToUserStatus(userIds);
+        statusServiceInstance.subscribeToUserStatus(userIds, handleStatusChanged);
     }
 
     for(var c=0; c<cc.length; c++){
@@ -96,6 +96,7 @@ function loadDirectoryInfo() {
 function startup(){
 
     settings = appSettings();
+    statusServiceInstance = statusService();
 
     traceService.log("starting");
 
@@ -105,32 +106,6 @@ function startup(){
     loadDirectoryInfo();
 
     $('#settingsButton').show();
-
-    PureCloud.notifications.channels.createChannel().done(function(data){
-        channelId = data.id;
-        //start a new web socket using the connect Uri of the channel
-        webSocket = new WebSocket(data.connectUri);
-
-        webSocket.onmessage = function(socketMessage) {
-            var message =  JSON.parse(socketMessage.data);
-
-            if(message.topicName.match(/users.*primarypresence/)){
-                var userId =message.topicName.replace('users.','').replace('.primarypresence', '');
-                var newStatus = message.eventBody.presenceDefinition.systemPresence;
-
-                var spanSelector = "span[data-id='"+ userId +"']";
-                var imageSelector = "div[data-id='"+ userId +"']," + spanSelector;
-
-                $(imageSelector).removeClass (function (index, css) {
-                    return (css.match (/status[A-Za-z]*/) || []).join(' ');
-                });
-
-                $(imageSelector).addClass("status" + newStatus);
-                $(spanSelector).attr('data-status', newStatus);
-            }
-
-        };
-    });
 
 }
 

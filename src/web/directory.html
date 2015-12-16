@@ -23,6 +23,7 @@
     <script src="/scripts/trace.js" type="text/javascript"></script>
     <script src="/scripts/userService.js" type="text/javascript"></script>
     <script src="/scripts/appsettings.js" type="text/javascript"></script>
+    <script src="/scripts/statusService.js" type="text/javascript"></script>
 
     <script src="/scripts/directoryApp.js" type="text/javascript"></script>
     <script src="/scripts/commoncontroller.js" type="text/javascript"></script>
@@ -55,14 +56,17 @@
                         <!--                        <div class='col-md-1'>-->
                         <label id='fromLabel' style="display:none" class="align-top">From</label>
                         <!--</div>-->
-                        <div id="from" ></div>
+                        <div class="col-md-11 container-fluid  nofloat">
+                            <div id="from" ></div>
+                        </div>
+
                     </div>
 
                     <div class="row2 ">
                         <!--                        <div class='col-md-1'>-->
                         <label id='toLabel' style="display:none" class="align-top">To</label>
                         <!--</div>-->
-                        <div class="col-md-11 container-fluid ">
+                        <div class="col-md-11 container-fluid  nofloat">
                             <div id="to" class="row">
                             </div>
                         </div>
@@ -71,7 +75,7 @@
                         <!--<div class='col-md-1'>-->
                         <label id='ccLabel' style="display:none" class="align-top">Cc</label>
                         <!--</div>-->
-                        <div class="container-fluid col-md-8">
+                        <div class="container-fluid col-md-11 nofloat">
                             <div id="cc" class="row">
                             </div>
 

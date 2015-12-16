@@ -20,7 +20,7 @@ app.use(express.static(__dirname + "/localBuild"));
 app.use('/github-outlook365addins', express.static(__dirname + "/localBuild"));
 
 app.get("/test.html", function(req, res){
-    res.redirect("voicemail.html");
+    res.redirect("directory.html");
 })
 
 app.post("/lambda", function(req, res){
