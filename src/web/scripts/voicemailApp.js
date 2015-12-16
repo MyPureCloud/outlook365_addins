@@ -22,7 +22,11 @@ function setError(message, data){
 }
 
 function handleStatusChanged(userid, status){
+    $("#fromImage").removeClass (function (index, css) {
+        return (css.match (/status[A-Za-z]*/) || []).join(' ');
+    });
 
+    $("#fromImage").addClass("status" + status);
 }
 
 function getSessionAndVoicemail(){
