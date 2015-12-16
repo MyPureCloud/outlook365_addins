@@ -1,23 +1,23 @@
-/*exported directorySettings */
+/*exported appSettings */
 /* jshint -W097 */
 'use strict';
 var appSettings = (function(){
 
-    var settingsTemplate = `<div id="settings" class="alert alert-info" role="alert" style='display:none'>
-        <h2>Settings</h2>
-        <form>
-            <label>Phone Numbers</label>
-            <br/>
+    var settingsTemplate = '<div id="settings" class="alert alert-info" role="alert" style="display:none">'+
+        '<h2>Settings</h2>'+
+        '<form>'+
+        '    <label>Phone Numbers</label>'+
+        '    <br/>'+
 
-            <input type="radio" id="settingCallInPureCloud"  name="phone">Place call through PureCloud</input>
-            <br>
-            <input type="radio" id="settingCreateTel" name="phone" >Create phone numbers as tel: links</input>
+        '    <input type="radio" id="settingCallInPureCloud"  name="phone">Place call through PureCloud</input>'+
+        '    <br>'+
+        '    <input type="radio" id="settingCreateTel" name="phone" >Create phone numbers as tel: links</input>'+
 
-            <br/>
-            <br/>
-            <button id='settingsCloseButton' type="button" class="btn btn-primary">Close</button>
-        </form>
-    </div>`;
+        '    <br/>'+
+        '    <br/>'+
+        '    <button id="settingsCloseButton" type="button" class="btn btn-primary">Close</button>'+
+        '</form>'+
+    '</div>';
 
     $("body").append(settingsTemplate);
 

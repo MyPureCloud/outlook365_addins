@@ -1,11 +1,12 @@
 /*global Office:false */
 /*global traceService:false */
-/*global loadHelpDialog:false */
+/*global appSettings:false */
 /*global PureCloud:false */
 /*global statusService:false */
 /*global Mustache:false */
 /*exported startup */
 /* jshint -W097 */
+/*jshint loopfunc: true */
 'use strict';
 
 $("#content-main").hide();

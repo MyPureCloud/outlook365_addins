@@ -1,7 +1,8 @@
 /*global Office:false */
 /*global Mustache:false */
 /*global PureCloud:false */
-/*global directorySettings:false */
+/*global appSettings:false */
+/*global statusService:false */
 /*global traceService:false */
 /*exported startup */
 /*exported call */
@@ -11,8 +12,6 @@
 
 var userService = userService();
 var settings = null;
-var webSocket = null;
-var channelId = null;
 var statusServiceInstance = null;
 
 function generateTemplate(personData){
@@ -140,5 +139,5 @@ function contactClicked(element){
     }
 
     $('#people').addClass('paddedLists');
-    $('#people').css("width", $(body).width - 200)
+    $('#people').css("width", $("body").width - 200);
 }
