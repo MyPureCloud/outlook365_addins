@@ -23,14 +23,16 @@ var statusService = (function(){
         webSocket = new WebSocket(data.connectUri);
 
         webSocket.onmessage = function(socketMessage) {
-            var message =  JSON.parse(socketMessage.data);
+            try{
+                var message =  JSON.parse(socketMessage.data);
 
-            if(message.topicName.match(/users.*primarypresence/)){
-                var userId =message.topicName.replace('users.','').replace('.primarypresence', '');
-                var newStatus = message.eventBody.presenceDefinition.systemPresence;
+                if(message.topicName.match(/users.*primarypresence/)){
+                    var userId =message.topicName.replace('users.','').replace('.primarypresence', '');
+                    var newStatus = message.eventBody.presenceDefinition.systemPresence;
 
-                userStatusChangedCallback(userId, newStatus);
-            }
+                    userStatusChangedCallback(userId, newStatus);
+                }
+            }catch(err){}
 
         };
     });

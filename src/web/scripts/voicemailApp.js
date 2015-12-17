@@ -131,10 +131,9 @@ function getSessionAndVoicemail(){
 
                     if(data.nextUri == null){
                         setError("Unable to find voicemail messages", {});
+                    }else {
+                        PureCloud.get(data.nextUri).done(handleVoiceMailPage);
                     }
-
-                    PureCloud.get(data.nextUri).done(handleVoiceMailPage);
-
                 }
 
                 PureCloud.voicemail.messages.getVoicemailMessages().done(handleVoiceMailPage).error(function(data){
