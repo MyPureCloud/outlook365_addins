@@ -51,6 +51,7 @@ function loadDirectoryInfo() {
         var person = generateTemplate(user);
         $("#from").html(person);
         $("#fromLabel").show();
+
         statusServiceInstance.subscribeToUserStatus(userIds, handleStatusChanged);
     });
 
@@ -73,6 +74,7 @@ function loadDirectoryInfo() {
         statusServiceInstance.subscribeToUserStatus(userIds, handleStatusChanged);
         $("#to").html($("#to").html() + generateTemplate(user));
         $("#toLabel").show();
+              $('#people').css("width", $("body").width - 5);
     }
 
     for(var t=0; t<to.length; t++){
@@ -105,6 +107,8 @@ function startup(){
     loadDirectoryInfo();
 
     $('#settingsButton').show();
+    $('#people').css("width", $("body").width() - 5);
+    $('#people').css("height", 255);
 
 }
 
@@ -139,5 +143,5 @@ function contactClicked(element){
     }
 
     $('#people').addClass('paddedLists');
-    $('#people').css("width", $("body").width - 200);
+    $('#people').css("width", $("body").width() - 240);
 }
