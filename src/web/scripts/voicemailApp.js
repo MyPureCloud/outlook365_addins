@@ -127,15 +127,14 @@ function getSessionAndVoicemail(){
 
                             return;
                         }
-
-                        if(data.nextUri == null){
-
-                            setError("Unable to find voicemail messages", {});
-                        }
-
-                        PureCloud.get(data.nextUri).done(handleVoiceMailPage);
-
                     }
+
+                    if(data.nextUri == null){
+                        setError("Unable to find voicemail messages", {});
+                    }
+
+                    PureCloud.get(data.nextUri).done(handleVoiceMailPage);
+                    
                 }
 
                 PureCloud.voicemail.messages.getVoicemailMessages().done(handleVoiceMailPage).error(function(data){

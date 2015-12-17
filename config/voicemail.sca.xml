@@ -6,7 +6,7 @@
     <ProviderName>Interactive Intelligence Open Source</ProviderName>
     <DefaultLocale>en-US</DefaultLocale>
     <DisplayName DefaultValue="PureCloud Voicemail" />
-    <Description DefaultValue="Listen to PureCloud voicemails right in Outlook"/>    <!-- Change the following line to specify the web server where the image file is hosted. -->
+    <Description DefaultValue="Listen to PureCloud voicemails right in Outlook. This application is open source and is provided as-is."/>    <!-- Change the following line to specify the web server where the image file is hosted. -->
     <IconUrl DefaultValue=
         "https://apps.ininsca.com/github-outlook365addins/purecloud.jpg"/>
     <Capabilities>
@@ -14,7 +14,7 @@
     </Capabilities>
     <DesktopSettings>
         <SourceLocation DefaultValue="https://apps.ininsca.com/github-outlook365addins/voicemail.html"/>
-        <RequestedHeight>50</RequestedHeight>
+        <RequestedHeight>250</RequestedHeight>
     </DesktopSettings>
 
     <Permissions>ReadItem</Permissions>
