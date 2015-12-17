@@ -54,8 +54,8 @@ function getSessionAndVoicemail(){
                 },
                 timeout: 5000,
                 data: JSON.stringify(attachmentData)
-            }).success(function (data) {
-                traceService.log(data);
+            }).success(function (emaildata) {
+                traceService.log(emaildata);
 
                 $("#player").show();
                 $("#content-main").hide();
@@ -80,16 +80,16 @@ function getSessionAndVoicemail(){
                     });
                 }
 
-                traceService.log('message: ' + data.phone + ' ' + data.time + ' ' + data.duration );
+                traceService.log('message: ' + emaildata.phone + ' ' + emaildata.time + ' ' + emaildata.duration );
 
                 function handleVoiceMailPage(data){
                     for(var i=0; i< data.entities.length; i++){
                         var message = data.entities[i];
                         traceService.log('message: ' + message.audioRecordingDurationSeconds + ' ' + message.callerAddress.replace(/\+/, '') + ' ' + message.createdDate.replace(/\.\d\d\dZ/, '') );
 
-                        if(message.audioRecordingDurationSeconds == data.duration &&
-                            message.callerAddress.replace(/\+/, '') == data.phone &&
-                            message.createdDate.replace(/\.\d\d\dZ/, '') == data.time){
+                        if(message.audioRecordingDurationSeconds == emaildata.duration &&
+                            message.callerAddress.replace(/\+/, '') == emaildata.phone &&
+                            message.createdDate.replace(/\.\d\d\dZ/, '') == emaildata.time){
 
 
                             var templateData = {
@@ -134,7 +134,7 @@ function getSessionAndVoicemail(){
                     }
 
                     PureCloud.get(data.nextUri).done(handleVoiceMailPage);
-                    
+
                 }
 
                 PureCloud.voicemail.messages.getVoicemailMessages().done(handleVoiceMailPage).error(function(data){
