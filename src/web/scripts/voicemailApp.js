@@ -47,7 +47,7 @@ function getSessionAndVoicemail(){
 
             $.ajax({
                 method: 'POST',
-                url: 'https://xjkyaa3y5a.execute-api.us-east-1.amazonaws.com/prod/outlook365_GetEmailBody',
+                url: 'https://jbnweocqy1.execute-api.us-east-1.amazonaws.com/prod/outlook365_GetEmailBody',
                 //url: '/lambda',
                 headers: {
                     'Content-Type': 'application/json'
@@ -139,7 +139,7 @@ function getSessionAndVoicemail(){
                 }
 
                 PureCloud.voicemail.messages.getVoicemailMessages().done(handleVoiceMailPage).error(function(data){
-                    setError("Unable to get voicemail messages", data);
+                    setError("Unable to get voicemail message", data);
                 });
 
             }).error(function(data){
