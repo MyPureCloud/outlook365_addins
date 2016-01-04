@@ -5,15 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <title></title>
     <script type="text/javascript">
+    document.write("debug<br/>");
+    document.write("hash: " + location.hash + "<br/>");
+
     var hash_array = location.hash.substring(1).split('&');
 
     for (var i = 0; i < hash_array.length; i++) {
        var pair = hash_array[i].split('=');
+       document.write(i + ': ' + hash_array[i]);
+       document.write(i + ': ' + pair[0] + ' = ' + pair[1]);
+
        if (pair[0] == "state") {
-           window.location.replace(window.location.origin+'/' + pair[1] + window.location.hash);
+           var redirecturl = window.location.origin+'/' + pair[1] + window.location.hash;
+           //window.location.replace(redirecturl);
+           document.write('state == ' + pair[1]);
+           document.write('origin: ' + window.location.origin);
+           document.write('pair[1]: ' + pair[1]);
+           document.write('hash: ' + window.location.hash);
+
+           document.write('redirect Url: ' + redirecturl);
        }
     }
-    
+
     </script>
 </head>
 <body>
