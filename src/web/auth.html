@@ -5,32 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <title></title>
     <script type="text/javascript">
-    document.write("debug<br/>");
-    document.write("hash: " + location.hash + "<br/>");
 
     var hash_array = location.hash.substring(1).split('&');
 
     for (var i = 0; i < hash_array.length; i++) {
        var pair = hash_array[i].split('=');
-       document.write(i + ': ' + hash_array[i]);
-       document.write(i + ': ' + pair[0] + ' = ' + pair[1]);
 
        if (pair[0] == "state") {
            if (!window.location.origin) {
               window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
-            }
-
-
+           }
            var redirecturl = window.location.origin+'/' + pair[1] + window.location.hash;
            window.location.replace(redirecturl);
-/*
-           document.write('state == ' + pair[1]);
-           document.write('origin: ' + window.location.origin);
-           document.write('pair[1]: ' + pair[1]);
-           document.write('hash: ' + window.location.hash);
 
-           document.write('redirect Url: ' + redirecturl);
-*/
        }
     }
 
@@ -40,19 +27,3 @@
     Redirecting back to app...
 </body>
 </html>
-
-debug
-hash: #access_token=PDy4MHpZjUo-VbQErv6bLrd3gEbCQ3BP6npFyQ9oXWPkjg-Yfh-qyjr9Jie1UJDN4sNYP6ZHPOyWDX_7Iy5fWg&expires_in=86399&state=github-outlook365addins/directory.html&token_type=bearer
-0: access_token=PDy4MHpZjUo-VbQErv6bLrd3gEbCQ3BP6npFyQ9oXWPkjg-Yfh-qyjr9Jie1UJDN4sNYP6ZHPOyWDX_7Iy5fWg
-0: access_token = PDy4MHpZjUo-VbQErv6bLrd3gEbCQ3BP6npFyQ9oXWPkjg-Yfh-qyjr9Jie1UJDN4sNYP6ZHPOyWDX_7Iy5fWg
-1: expires_in=86399
-1: expires_in = 86399
-2: state=github-outlook365addins/directory.html
-2: state = github-outlook365addins/directory.html
-state == github-outlook365addins/directory.html
-origin: undefined
-pair[1]: github-outlook365addins/directory.html
-hash: #access_token=PDy4MHpZjUo-VbQErv6bLrd3gEbCQ3BP6npFyQ9oXWPkjg-Yfh-qyjr9Jie1UJDN4sNYP6ZHPOyWDX_7Iy5fWg&expires_in=86399&state=github-outlook365addins/directory.html&token_type=bearer
-redirect Url: undefined/github-outlook365addins/directory.html#access_token=PDy4MHpZjUo-VbQErv6bLrd3gEbCQ3BP6npFyQ9oXWPkjg-Yfh-qyjr9Jie1UJDN4sNYP6ZHPOyWDX_7Iy5fWg&expires_in=86399&state=github-outlook365addins/directory.html&token_type=bearer
-3: token_type=bearer
-3: token_type = bearer Redirecting back to app...
