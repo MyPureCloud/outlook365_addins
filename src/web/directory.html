@@ -133,12 +133,12 @@
         </script>
 
         <script id="personTpl" type="text/template">
-            {{^phone}}
+            {{^id}}
             <div class='contact' style='margin-right:5px; white-space:nowrap'>
                 {{name}} <{{email}}>;
             </div>
-            {{/phone}}
-            {{#phone}}
+            {{/id}}
+            {{#id}}
             <span style='margin-right:5px; white-space:nowrap'
                     class='contact directorycontact status{{status}}'
                     onclick='contactClicked(this)'
@@ -153,7 +153,7 @@
                 <img src='{{picture}}'  class='entity-image'></img>
                 <span style='position:relative'>{{name}}</span>
             </span>
-            {{/phone}}
+            {{/id}}
         </script>
     </div>
 </body>
